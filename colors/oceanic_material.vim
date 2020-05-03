@@ -284,15 +284,6 @@ call s:hi('GreenSign', s:palette.green, s:palette.none)
 call s:hi('AquaSign', s:palette.aqua, s:palette.none)
 call s:hi('BlueSign', s:palette.blue, s:palette.none)
 call s:hi('PurpleSign', s:palette.purple, s:palette.none)
-
-call s:hi('RedSignBold', s:palette.red, s:palette.none,'bold')
-call s:hi('OrangeSignBold', s:palette.orange, s:palette.none,'bold')
-call s:hi('YellowSignBold', s:palette.yellow, s:palette.none,'bold')
-call s:hi('GreenSignBold', s:palette.green, s:palette.none,'bold')
-call s:hi('AquaSignBold', s:palette.aqua, s:palette.none,'bold')
-call s:hi('BlueSignBold', s:palette.blue, s:palette.none,'bold')
-call s:hi('PurpleSignBold', s:palette.purple, s:palette.none,'bold')
-
 " }}}
 " }}}
 " Extended File Types: {{{
@@ -1619,17 +1610,10 @@ highlight! link VistaIcon Purple
 highlight! link VistaLineNr Fg
 " }}}
 " airblade/vim-gitgutter {{{
-if s:oceanic_material_enable_bold
-  highlight! link GitGutterAdd GreenSignBold
-  highlight! link GitGutterChange BlueSignBold
-  highlight! link GitGutterDelete RedSignBold
-  highlight! link GitGutterChangeDelete PurpleSignBold
-else
-  highlight! link GitGutterAdd GreenSign
-  highlight! link GitGutterChange BlueSign
-  highlight! link GitGutterDelete RedSign
-  highlight! link GitGutterChangeDelete PurpleSign
-endif
+highlight! link GitGutterAdd GreenSign
+highlight! link GitGutterChange BlueSign
+highlight! link GitGutterDelete RedSign
+highlight! link GitGutterChangeDelete PurpleSign
 " }}}
 " mhinz/vim-signify {{{
 highlight! link SignifySignAdd GreenSign
