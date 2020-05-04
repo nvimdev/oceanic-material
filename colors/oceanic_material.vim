@@ -5,7 +5,6 @@
 " Source: http://github.com/hardcoreplayers/oceanic_material
 " ===============================================================
 
-
 " Initialization: {{{
 "
 hi clear
@@ -23,9 +22,43 @@ if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 
 endif
 
 let s:oceanic_material_transparent_background = get(g:,'oceanic_material_transparent_background',0)
-let s:oceanic_material_enable_bold = get(g:,'oceanic_material_enable_bold', 1)
+" if set to 1,disable bold
+let s:oceanic_material_enable_bold = get(g:,'oceanic_material_enable_bold', 0)
+" if set to 1,enable italic
 let s:oceanic_material_enable_italic = get(g:,'oceanic_material_enable_italic',0)
+" if set to 1,disable underline
+let s:oceanic_material_enable_underline = get(g:,'oceanic_material_enable_underline',0)
+" if set to 1,disable reverse
+let s:oceanic_material_enable_reverse = get(g:,'oceanic_material_enable_reverse',0)
+" if set to 1,disable reverse
+let s:oceanic_material_enable_undercurl = get(g:,'oceanic_material_enable_undercurl',0)
+
 let s:oceanic_material_disable_italic_comment = get(g:,'oceanic_material_disable_italic_comment',1)
+
+let s:bold = 'bold,'
+if s:oceanic_material_enable_bold == 1
+  let s:bold = ''
+endif
+
+let s:italic = ''
+if s:oceanic_material_enable_italic == 1
+  let s:italic = 'italic,'
+endif
+
+let s:underline = 'underline,'
+if s:oceanic_material_enable_underline == 1
+  let s:underline = ''
+endif
+
+let s:reverse = 'reverse,'
+if s:oceanic_material_enable_reverse == 1
+  let s:reverse = ''
+endif
+
+let s:undercurl = 'undercurl,'
+if s:oceanic_material_enable_undercurl == 1
+  let s:undercurl = ''
+endif
 
 let s:palette = {
       \ 'bg0':              ['#1b2b34',   '235'],
@@ -62,98 +95,122 @@ let s:palette = {
   \ }
 " }}}
 
-function! s:hi(group, fg, bg, ...) "{{{
-  execute 'highlight' a:group
-        \ 'guifg=' . a:fg[0]
-        \ 'guibg=' . a:bg[0]
-        \ 'ctermfg=' . a:fg[1]
-        \ 'ctermbg=' . a:bg[1]
-        \ 'gui=' . (a:0 >= 1 ?
-          \ (a:1 ==# 'undercurl' ?
-            \ (executable('tmux') && $TMUX !=# '' ?
-              \ 'underline' :
-              \ 'undercurl') :
-            \ a:1) :
-          \ 'NONE')
-        \ 'cterm=' . (a:0 >= 1 ?
-          \ (a:1 ==# 'undercurl' ?
-            \ 'underline' :
-            \ a:1) :
-          \ 'NONE')
-        \ 'guisp=' . (a:0 >= 2 ?
-          \ a:2[0] :
-          \ 'NONE')
-endfunction "}}}
+function! s:HL(group, fg, ...)
+  " Arguments: group, guifg, guibg, gui, guisp
+
+  if type(a:fg) == 3
+    let fg = a:fg
+  elseif type(a:fg) == 1
+    let fg = [a:fg, a:fg]
+  else
+    let fg = ['NONE', 'NONE']
+  endif
+
+  if a:0 >= 1 && type(a:1) == 3
+    let bg = a:1
+  elseif a:0 >= 1 && type(a:1) == 1
+    let bg = [a:1, a:1]
+  else
+    let bg = ['NONE', 'NONE']
+  endif
+
+  if a:0 >= 2 && strlen(a:2)
+    let emstr = a:2[:-2]
+  else
+    let emstr  = 'NONE'
+  endif
+
+  let histring = ['hi', a:group,
+        \ 'guifg=' . fg[0], 'ctermfg=' . fg[1],
+        \ 'guibg=' . bg[0], 'ctermbg=' . bg[1],
+        \ 'gui=' . emstr, 'cterm=' . emstr
+        \ ]
+
+  if a:0 >= 3
+    if type(a:3) == 3
+      let specl = a:3[0]
+    elseif type(a:3) == 1
+      let specl = a:3
+    else
+      let specl = 'NONE'
+    endif
+
+    call add(histring, 'guisp=' . specl)
+  endif
+
+  execute join(histring, ' ')
+endfunction
 
 " Oceanic Material Transparent BackGround
 if s:oceanic_material_transparent_background
-  call s:hi('Normal', s:palette.fg0, s:palette.none)
-  call s:hi('Terminal', s:palette.fg0, s:palette.none)
-  call s:hi('EndOfBuffer', s:palette.bg0, s:palette.none)
-  call s:hi('FoldColumn', s:palette.grey0, s:palette.none)
-  call s:hi('Folded', s:palette.grey1, s:palette.none)
-  call s:hi('SignColumn', s:palette.fg0, s:palette.none)
-  call s:hi('ToolbarLine', s:palette.fg0, s:palette.none)
-  call s:hi('VertSplit', s:palette.bg5, s:palette.none)
+  call s:HL('Normal', s:palette.fg0, s:palette.none)
+  call s:HL('Terminal', s:palette.fg0, s:palette.none)
+  call s:HL('EndOfBuffer', s:palette.bg0, s:palette.none)
+  call s:HL('FoldColumn', s:palette.grey0, s:palette.none)
+  call s:HL('Folded', s:palette.grey1, s:palette.none)
+  call s:HL('SignColumn', s:palette.fg0, s:palette.none)
+  call s:HL('ToolbarLine', s:palette.fg0, s:palette.none)
+  call s:HL('VertSplit', s:palette.bg5, s:palette.none)
 else
-  call s:hi('Normal', s:palette.fg0, s:palette.bg0)
-  call s:hi('Terminal', s:palette.fg0, s:palette.bg0)
-  call s:hi('EndOfBuffer', s:palette.bg0, s:palette.bg0)
-  call s:hi('Folded', s:palette.grey1, s:palette.bg2)
-  call s:hi('ToolbarLine', s:palette.fg1, s:palette.bg3)
-  call s:hi('SignColumn', s:palette.fg0, s:palette.bg0)
-  call s:hi('FoldColumn', s:palette.grey0, s:palette.bg2)
-  call s:hi('VertSplit', s:palette.bg5, s:palette.none)
+  call s:HL('Normal', s:palette.fg0, s:palette.bg0)
+  call s:HL('Terminal', s:palette.fg0, s:palette.bg0)
+  call s:HL('EndOfBuffer', s:palette.bg0, s:palette.bg0)
+  call s:HL('Folded', s:palette.grey1, s:palette.bg2)
+  call s:HL('ToolbarLine', s:palette.fg1, s:palette.bg3)
+  call s:HL('SignColumn', s:palette.fg0, s:palette.bg0)
+  call s:HL('FoldColumn', s:palette.grey0, s:palette.bg2)
+  call s:HL('VertSplit', s:palette.bg5, s:palette.none)
 endif
-call s:hi('IncSearch', s:palette.bg0, s:palette.bg_red)
-call s:hi('Search', s:palette.bg0, s:palette.bg_green)
-call s:hi('ColorColumn', s:palette.none, s:palette.bg1)
-call s:hi('Conceal', s:palette.grey1, s:palette.none)
-call s:hi('Cursor', s:palette.none, s:palette.none, 'reverse')
+
+call s:HL('IncSearch', s:palette.bg0, s:palette.bg_red)
+call s:HL('Search', s:palette.bg0, s:palette.bg_green)
+call s:HL('ColorColumn', s:palette.none, s:palette.bg1)
+call s:HL('Conceal', s:palette.grey1, s:palette.none)
+call s:HL('Cursor', s:palette.none, s:palette.none, s:reverse)
 
 highlight! link vCursor Cursor
 highlight! link iCursor Cursor
 highlight! link lCursor Cursor
 highlight! link CursorIM Cursor
-call s:hi('CursorColumn', s:palette.none, s:palette.bg1)
-call s:hi('CursorLine', s:palette.none, s:palette.bg1)
-call s:hi('LineNr', s:palette.grey0, s:palette.none)
-call s:hi('CursorLineNr', s:palette.grey2, s:palette.none)
-call s:hi('DiffAdd', s:palette.none, s:palette.bg_diff_green)
-call s:hi('DiffChange', s:palette.none, s:palette.bg_diff_blue)
-call s:hi('DiffDelete', s:palette.none, s:palette.bg_diff_red)
-call s:hi('DiffText', s:palette.bg0, s:palette.fg0)
-call s:hi('Directory', s:palette.green, s:palette.none)
-call s:hi('ErrorMsg', s:palette.red, s:palette.none, 'bold,underline')
-call s:hi('WarningMsg', s:palette.yellow, s:palette.none, 'bold')
-call s:hi('ModeMsg', s:palette.fg0, s:palette.none, 'bold')
-call s:hi('MoreMsg', s:palette.yellow, s:palette.none, 'bold')
-call s:hi('MatchParen', s:palette.none, s:palette.bg4)
-call s:hi('NonText', s:palette.bg5, s:palette.none)
-call s:hi('Whitespace', s:palette.bg5, s:palette.none)
-call s:hi('SpecialKey', s:palette.bg5, s:palette.none)
-call s:hi('Pmenu', s:palette.fg1, s:palette.bg3)
-call s:hi('PmenuSbar', s:palette.none, s:palette.bg3)
-call s:hi('PmenuSel', s:palette.bg3, s:palette.bg_green)
+call s:HL('CursorColumn', s:palette.none, s:palette.bg1)
+call s:HL('CursorLine', s:palette.none, s:palette.bg1)
+call s:HL('LineNr', s:palette.grey0, s:palette.none)
+call s:HL('CursorLineNr', s:palette.grey2, s:palette.none)
+call s:HL('DiffAdd', s:palette.none, s:palette.bg_diff_green)
+call s:HL('DiffChange', s:palette.none, s:palette.bg_diff_blue)
+call s:HL('DiffDelete', s:palette.none, s:palette.bg_diff_red)
+call s:HL('DiffText', s:palette.bg0, s:palette.fg0)
+call s:HL('Directory', s:palette.green, s:palette.none)
+call s:HL('ErrorMsg', s:palette.red, s:palette.none, s:bold . s:underline)
+call s:HL('WarningMsg', s:palette.yellow, s:palette.none, s:bold)
+call s:HL('ModeMsg', s:palette.fg0, s:palette.none, s:bold)
+call s:HL('MoreMsg', s:palette.yellow, s:palette.none, s:bold)
+call s:HL('MatchParen', s:palette.none, s:palette.bg4)
+call s:HL('NonText', s:palette.bg5, s:palette.none)
+call s:HL('Whitespace', s:palette.bg5, s:palette.none)
+call s:HL('SpecialKey', s:palette.bg5, s:palette.none)
+call s:HL('Pmenu', s:palette.fg1, s:palette.bg3)
+call s:HL('PmenuSbar', s:palette.none, s:palette.bg3)
+call s:HL('PmenuSel', s:palette.bg3, s:palette.bg_green)
 highlight! link WildMenu PmenuSel
-call s:hi('PmenuThumb', s:palette.none, s:palette.grey0)
-call s:hi('Question', s:palette.yellow, s:palette.none)
-call s:hi('SpellBad', s:palette.red, s:palette.none, 'undercurl', s:palette.red)
-call s:hi('SpellCap', s:palette.blue, s:palette.none, 'undercurl', s:palette.blue)
-call s:hi('SpellLocal', s:palette.aqua, s:palette.none, 'undercurl', s:palette.aqua)
-call s:hi('SpellRare', s:palette.purple, s:palette.none, 'undercurl', s:palette.purple)
+call s:HL('PmenuThumb', s:palette.none, s:palette.grey0)
+call s:HL('Question', s:palette.yellow, s:palette.none)
+call s:HL('SpellBad', s:palette.red, s:palette.none, s:undercurl, s:palette.red)
+call s:HL('SpellCap', s:palette.blue, s:palette.none, s:undercurl, s:palette.blue)
+call s:HL('SpellLocal', s:palette.aqua, s:palette.none, s:undercurl, s:palette.aqua)
+call s:HL('SpellRare', s:palette.purple, s:palette.none, s:undercurl, s:palette.purple)
 
-call s:hi('Visual', s:palette.none, s:palette.none, 'reverse')
-call s:hi('VisualNOS', s:palette.none, s:palette.none, 'reverse')
+call s:HL('Visual', s:palette.none, s:palette.none, s:reverse)
+call s:HL('VisualNOS', s:palette.none, s:palette.none, s:reverse)
 
-call s:hi('QuickFixLine', s:palette.purple, s:palette.none, 'bold')
-call s:hi('Debug', s:palette.orange, s:palette.none)
-call s:hi('debugPC', s:palette.bg0, s:palette.green)
-call s:hi('debugBreakpoint', s:palette.bg0, s:palette.red)
-call s:hi('ToolbarButton', s:palette.bg0, s:palette.grey2)
+call s:HL('QuickFixLine', s:palette.purple, s:palette.none, s:bold)
+call s:HL('Debug', s:palette.orange, s:palette.none)
+call s:HL('debugPC', s:palette.bg0, s:palette.green)
+call s:HL('debugBreakpoint', s:palette.bg0, s:palette.red)
+call s:HL('ToolbarButton', s:palette.bg0, s:palette.grey2)
 if has('nvim')
-  call s:hi('Substitute', s:palette.bg0, s:palette.yellow)
-  call s:hi('TermCursorNC', s:palette.bg0, s:palette.grey2)
+  call s:HL('Substitute', s:palette.bg0, s:palette.yellow)
+  call s:HL('TermCursorNC', s:palette.bg0, s:palette.grey2)
   highlight! link TermCursor Cursor
   highlight! link healthError Red
   highlight! link healthSuccess Green
@@ -168,137 +225,96 @@ if has('nvim')
 endif
 " }}}
 " Syntax: {{{
-call s:hi('Boolean', s:palette.purple, s:palette.none)
-call s:hi('Number', s:palette.purple, s:palette.none)
-call s:hi('Float', s:palette.purple, s:palette.none)
-if s:oceanic_material_enable_italic
-  call s:hi('PreProc', s:palette.purple, s:palette.none, 'italic')
-  call s:hi('PreCondit', s:palette.purple, s:palette.none, 'italic')
-  call s:hi('Include', s:palette.purple, s:palette.none, 'italic')
-  call s:hi('Define', s:palette.purple, s:palette.none, 'italic')
-  call s:hi('Conditional', s:palette.red, s:palette.none, 'italic')
-  call s:hi('Repeat', s:palette.red, s:palette.none, 'italic')
-  call s:hi('Keyword', s:palette.red, s:palette.none, 'italic')
-  call s:hi('Typedef', s:palette.red, s:palette.none, 'italic')
-  call s:hi('Exception', s:palette.red, s:palette.none, 'italic')
-  call s:hi('Statement', s:palette.red, s:palette.none, 'italic')
-else
-  call s:hi('PreProc', s:palette.purple, s:palette.none)
-  call s:hi('PreCondit', s:palette.purple, s:palette.none)
-  call s:hi('Include', s:palette.purple, s:palette.none)
-  call s:hi('Define', s:palette.purple, s:palette.none)
-  call s:hi('Conditional', s:palette.red, s:palette.none)
-  call s:hi('Repeat', s:palette.red, s:palette.none)
-  call s:hi('Keyword', s:palette.red, s:palette.none)
-  call s:hi('Typedef', s:palette.red, s:palette.none)
-  call s:hi('Exception', s:palette.red, s:palette.none)
-  call s:hi('Statement', s:palette.red, s:palette.none)
-endif
+call s:HL('Boolean', s:palette.purple, s:palette.none)
+call s:HL('Number', s:palette.purple, s:palette.none)
+call s:HL('Float', s:palette.purple, s:palette.none)
 
-call s:hi('Error', s:palette.red, s:palette.none)
-call s:hi('StorageClass', s:palette.orange, s:palette.none)
-call s:hi('Tag', s:palette.orange, s:palette.none)
-call s:hi('Label', s:palette.orange, s:palette.none)
-call s:hi('Structure', s:palette.orange, s:palette.none)
-call s:hi('Operator', s:palette.orange, s:palette.none)
-call s:hi('Title', s:palette.orange, s:palette.none, 'bold')
-call s:hi('Special', s:palette.yellow, s:palette.none)
-call s:hi('SpecialChar', s:palette.yellow, s:palette.none)
-call s:hi('Type', s:palette.yellow, s:palette.none)
+call s:HL('PreProc', s:palette.purple, s:palette.none, s:italic)
+call s:HL('PreCondit', s:palette.purple, s:palette.none, s:italic)
+call s:HL('Include', s:palette.purple, s:palette.none, s:italic)
+call s:HL('Define', s:palette.purple, s:palette.none, s:italic)
+call s:HL('Conditional', s:palette.red, s:palette.none, s:italic)
+call s:HL('Repeat', s:palette.red, s:palette.none, s:italic)
+call s:HL('Keyword', s:palette.red, s:palette.none, s:italic)
+call s:HL('Typedef', s:palette.red, s:palette.none, s:italic)
+call s:HL('Exception', s:palette.red, s:palette.none, s:italic)
+call s:HL('Statement', s:palette.red, s:palette.none, s:italic)
 
-if s:oceanic_material_enable_bold
-  call s:hi('Function', s:palette.green, s:palette.none, 'bold')
-else
-  call s:hi('Function', s:palette.green, s:palette.none)
-endif
+call s:HL('Error', s:palette.red, s:palette.none)
+call s:HL('StorageClass', s:palette.orange, s:palette.none)
+call s:HL('Tag', s:palette.orange, s:palette.none)
+call s:HL('Label', s:palette.orange, s:palette.none)
+call s:HL('Structure', s:palette.orange, s:palette.none)
+call s:HL('Operator', s:palette.orange, s:palette.none)
+call s:HL('Title', s:palette.orange, s:palette.none, s:bold)
+call s:HL('Special', s:palette.yellow, s:palette.none)
+call s:HL('SpecialChar', s:palette.yellow, s:palette.none)
+call s:HL('Type', s:palette.yellow, s:palette.none)
+call s:HL('Function', s:palette.green, s:palette.none, s:bold)
+call s:HL('String', s:palette.green, s:palette.none)
+call s:HL('Character', s:palette.green, s:palette.none)
+call s:HL('Constant', s:palette.aqua, s:palette.none)
+call s:HL('Macro', s:palette.aqua, s:palette.none)
+call s:HL('Identifier', s:palette.blue, s:palette.none)
 
-call s:hi('String', s:palette.green, s:palette.none)
-call s:hi('Character', s:palette.green, s:palette.none)
-call s:hi('Constant', s:palette.aqua, s:palette.none)
-call s:hi('Macro', s:palette.aqua, s:palette.none)
-call s:hi('Identifier', s:palette.blue, s:palette.none)
+" Comment
+call s:HL('Comment', s:palette.grey1, s:palette.none, s:italic)
+call s:HL('SpecialComment', s:palette.grey1, s:palette.none, s:italic)
+call s:HL('Todo', s:palette.purple, s:palette.none, s:italic)
 
-if s:oceanic_material_disable_italic_comment
-  call s:hi('Comment', s:palette.grey1, s:palette.none)
-  call s:hi('SpecialComment', s:palette.grey1, s:palette.none)
-  call s:hi('Todo', s:palette.purple, s:palette.none)
-else
-  call s:hi('Comment', s:palette.grey1, s:palette.none, 'italic')
-  call s:hi('SpecialComment', s:palette.grey1, s:palette.none, 'italic')
-  call s:hi('Todo', s:palette.purple, s:palette.none, 'italic')
-endif
-
-call s:hi('Delimiter', s:palette.fg0, s:palette.none)
-call s:hi('Ignore', s:palette.grey1, s:palette.none)
-call s:hi('Underlined', s:palette.none, s:palette.none, 'underline')
+call s:HL('Delimiter', s:palette.fg0, s:palette.none)
+call s:HL('Ignore', s:palette.grey1, s:palette.none)
+call s:HL('Underlined', s:palette.none, s:palette.none, s:underline)
 " }}}
 " Predefined Highlight Groups: {{{
-call s:hi('Fg', s:palette.fg0, s:palette.none)
-call s:hi('Grey', s:palette.grey1, s:palette.none)
-call s:hi('Red', s:palette.red, s:palette.none)
-call s:hi('Orange', s:palette.orange, s:palette.none)
-call s:hi('Yellow', s:palette.yellow, s:palette.none)
-call s:hi('Green', s:palette.green, s:palette.none)
-call s:hi('Aqua', s:palette.aqua, s:palette.none)
-call s:hi('Blue', s:palette.blue, s:palette.none)
-call s:hi('Purple', s:palette.purple, s:palette.none)
-if s:oceanic_material_enable_italic
-  call s:hi('RedItalic', s:palette.red, s:palette.none, 'italic')
-  call s:hi('OrangeItalic', s:palette.orange, s:palette.none, 'italic')
-  call s:hi('YellowItalic', s:palette.yellow, s:palette.none, 'italic')
-  call s:hi('GreenItalic', s:palette.green, s:palette.none, 'italic')
-  call s:hi('AquaItalic', s:palette.aqua, s:palette.none, 'italic')
-  call s:hi('BlueItalic', s:palette.blue, s:palette.none, 'italic')
-  call s:hi('PurpleItalic', s:palette.purple, s:palette.none, 'italic')
-else
-  call s:hi('RedItalic', s:palette.red, s:palette.none)
-  call s:hi('OrangeItalic', s:palette.orange, s:palette.none)
-  call s:hi('YellowItalic', s:palette.yellow, s:palette.none)
-  call s:hi('GreenItalic', s:palette.green, s:palette.none)
-  call s:hi('AquaItalic', s:palette.aqua, s:palette.none)
-  call s:hi('BlueItalic', s:palette.blue, s:palette.none)
-  call s:hi('PurpleItalic', s:palette.purple, s:palette.none)
-endif
-if s:oceanic_material_enable_bold
-  call s:hi('RedBold', s:palette.red, s:palette.none, 'bold')
-  call s:hi('OrangeBold', s:palette.orange, s:palette.none, 'bold')
-  call s:hi('YellowBold', s:palette.yellow, s:palette.none, 'bold')
-  call s:hi('GreenBold', s:palette.green, s:palette.none, 'bold')
-  call s:hi('AquaBold', s:palette.aqua, s:palette.none, 'bold')
-  call s:hi('BlueBold', s:palette.blue, s:palette.none, 'bold')
-  call s:hi('PurpleBold', s:palette.purple, s:palette.none, 'bold')
-else
-  call s:hi('RedBold', s:palette.red, s:palette.none)
-  call s:hi('OrangeBold', s:palette.orange, s:palette.none)
-  call s:hi('YellowBold', s:palette.yellow, s:palette.none)
-  call s:hi('GreenBold', s:palette.green, s:palette.none)
-  call s:hi('AquaBold', s:palette.aqua, s:palette.none)
-  call s:hi('BlueBold', s:palette.blue, s:palette.none)
-  call s:hi('PurpleBold', s:palette.purple, s:palette.none)
-endif
+call s:HL('Fg', s:palette.fg0, s:palette.none)
+call s:HL('Grey', s:palette.grey1, s:palette.none)
+call s:HL('Red', s:palette.red, s:palette.none)
+call s:HL('Orange', s:palette.orange, s:palette.none)
+call s:HL('Yellow', s:palette.yellow, s:palette.none)
+call s:HL('Green', s:palette.green, s:palette.none)
+call s:HL('Aqua', s:palette.aqua, s:palette.none)
+call s:HL('Blue', s:palette.blue, s:palette.none)
+call s:HL('Purple', s:palette.purple, s:palette.none)
 
-call s:hi('RedSign', s:palette.red, s:palette.none)
-call s:hi('OrangeSign', s:palette.orange, s:palette.none)
-call s:hi('YellowSign', s:palette.yellow, s:palette.none)
-call s:hi('GreenSign', s:palette.green, s:palette.none)
-call s:hi('AquaSign', s:palette.aqua, s:palette.none)
-call s:hi('BlueSign', s:palette.blue, s:palette.none)
-call s:hi('PurpleSign', s:palette.purple, s:palette.none)
+call s:HL('RedItalic', s:palette.red, s:palette.none, s:italic)
+call s:HL('OrangeItalic', s:palette.orange, s:palette.none, s:italic)
+call s:HL('YellowItalic', s:palette.yellow, s:palette.none, s:italic)
+call s:HL('GreenItalic', s:palette.green, s:palette.none, s:italic)
+call s:HL('AquaItalic', s:palette.aqua, s:palette.none, s:italic)
+call s:HL('BlueItalic', s:palette.blue, s:palette.none, s:italic)
+call s:HL('PurpleItalic', s:palette.purple, s:palette.none, s:italic)
+
+call s:HL('RedBold', s:palette.red, s:palette.none, s:bold)
+call s:HL('OrangeBold', s:palette.orange, s:palette.none, s:bold)
+call s:HL('YellowBold', s:palette.yellow, s:palette.none, s:bold)
+call s:HL('GreenBold', s:palette.green, s:palette.none, s:bold)
+call s:HL('AquaBold', s:palette.aqua, s:palette.none, s:bold)
+call s:HL('BlueBold', s:palette.blue, s:palette.none, s:bold)
+call s:HL('PurpleBold', s:palette.purple, s:palette.none, s:bold)
+
+call s:HL('RedSign', s:palette.red, s:palette.none)
+call s:HL('OrangeSign', s:palette.orange, s:palette.none)
+call s:HL('YellowSign', s:palette.yellow, s:palette.none)
+call s:HL('GreenSign', s:palette.green, s:palette.none)
+call s:HL('AquaSign', s:palette.aqua, s:palette.none)
+call s:HL('BlueSign', s:palette.blue, s:palette.none)
+call s:HL('PurpleSign', s:palette.purple, s:palette.none)
 " }}}
 " }}}
 " Extended File Types: {{{
 " Markdown: {{{
 " builtin: {{{
-call s:hi('markdownH1', s:palette.red, s:palette.none, 'bold')
-call s:hi('markdownH2', s:palette.orange, s:palette.none, 'bold')
-call s:hi('markdownH3', s:palette.yellow, s:palette.none, 'bold')
-call s:hi('markdownH4', s:palette.green, s:palette.none, 'bold')
-call s:hi('markdownH5', s:palette.blue, s:palette.none, 'bold')
-call s:hi('markdownH6', s:palette.purple, s:palette.none, 'bold')
-call s:hi('markdownUrl', s:palette.blue, s:palette.none, 'underline')
-call s:hi('markdownItalic', s:palette.none, s:palette.none, 'italic')
-call s:hi('markdownBold', s:palette.none, s:palette.none, 'bold')
-call s:hi('markdownItalicDelimiter', s:palette.grey1, s:palette.none, 'italic')
+call s:HL('markdownH1', s:palette.red, s:palette.none, s:bold)
+call s:HL('markdownH2', s:palette.orange, s:palette.none, s:bold)
+call s:HL('markdownH3', s:palette.yellow, s:palette.none, s:bold)
+call s:HL('markdownH4', s:palette.green, s:palette.none, s:bold)
+call s:HL('markdownH5', s:palette.blue, s:palette.none, s:bold)
+call s:HL('markdownH6', s:palette.purple, s:palette.none, s:bold)
+call s:HL('markdownUrl', s:palette.blue, s:palette.none, s:underline)
+call s:HL('markdownItalic', s:palette.none, s:palette.none, s:italic)
+call s:HL('markdownBold', s:palette.none, s:palette.none, s:bold)
+call s:HL('markdownItalicDelimiter', s:palette.grey1, s:palette.none, s:italic)
 highlight! link markdownCode Green
 highlight! link markdownCodeBlock Aqua
 highlight! link markdownCodeDelimiter Aqua
@@ -318,9 +334,9 @@ highlight! link markdownBoldDelimiter Grey
 highlight! link markdownId Yellow
 " }}}
 " vim-markdown: https://github.com/gabrielelana/vim-markdown {{{
-call s:hi('mkdURL', s:palette.blue, s:palette.none, 'underline')
-call s:hi('mkdInlineURL', s:palette.purple, s:palette.none, 'underline')
-call s:hi('mkdItalic', s:palette.grey1, s:palette.none, 'italic')
+call s:HL('mkdURL', s:palette.blue, s:palette.none, s:underline)
+call s:HL('mkdInlineURL', s:palette.purple, s:palette.none, s:underline)
+call s:HL('mkdItalic', s:palette.grey1, s:palette.none, s:italic)
 highlight! link mkdCodeDelimiter Aqua
 highlight! link mkdBold Grey
 highlight! link mkdLink Purple
@@ -330,14 +346,12 @@ highlight! link mkdRule Purple
 highlight! link mkdDelimiter Grey
 highlight! link mkdId Yellow
 " }}}
-" }}}
 " ReStructuredText: {{{
 " builtin: https://github.com/marshallward/vim-restructuredtext {{{
-call s:hi('rstStandaloneHyperlink', s:palette.purple, s:palette.none, 'underline')
+call s:HL('rstStandaloneHyperlink', s:palette.purple, s:palette.none,s:underline)
 highlight! link rstSubstitutionReference Blue
 highlight! link rstInterpretedTextOrHyperlinkReference Aqua
 highlight! link rstTableLines Grey
-" }}}
 " }}}
 " LaTex: {{{
 " builtin: http://www.drchip.org/astronaut/vim/index.html#SYNTAX_TEX {{{
@@ -351,23 +365,22 @@ highlight! link texBeginEndName Blue
 highlight! link texDocType Purple
 highlight! link texDocTypeArgs Orange
 " }}}
-" }}}
 " Html: {{{
 " builtin: https://notabug.org/jorgesumle/vim-html-syntax {{{
-call s:hi('htmlH1', s:palette.red, s:palette.none, 'bold')
-call s:hi('htmlH2', s:palette.orange, s:palette.none, 'bold')
-call s:hi('htmlH3', s:palette.yellow, s:palette.none, 'bold')
-call s:hi('htmlH4', s:palette.green, s:palette.none, 'bold')
-call s:hi('htmlH5', s:palette.blue, s:palette.none, 'bold')
-call s:hi('htmlH6', s:palette.purple, s:palette.none, 'bold')
-call s:hi('htmlLink', s:palette.none, s:palette.none, 'underline')
-call s:hi('htmlBold', s:palette.none, s:palette.none, 'bold')
-call s:hi('htmlBoldUnderline', s:palette.none, s:palette.none, 'bold,underline')
-call s:hi('htmlBoldItalic', s:palette.none, s:palette.none, 'bold,italic')
-call s:hi('htmlBoldUnderlineItalic', s:palette.none, s:palette.none, 'bold,underline,italic')
-call s:hi('htmlUnderline', s:palette.none, s:palette.none, 'underline')
-call s:hi('htmlUnderlineItalic', s:palette.none, s:palette.none, 'underline,italic')
-call s:hi('htmlItalic', s:palette.none, s:palette.none, 'italic')
+call s:HL('htmlH1', s:palette.red, s:palette.none, s:bold)
+call s:HL('htmlH2', s:palette.orange, s:palette.none, s:bold)
+call s:HL('htmlH3', s:palette.yellow, s:palette.none, s:bold)
+call s:HL('htmlH4', s:palette.green, s:palette.none, s:bold)
+call s:HL('htmlH5', s:palette.blue, s:palette.none, s:bold)
+call s:HL('htmlH6', s:palette.purple, s:palette.none, s:bold)
+call s:HL('htmlLink', s:palette.none, s:palette.none, s:underline)
+call s:HL('htmlBold', s:palette.none, s:palette.none, s:bold)
+call s:HL('htmlBoldUnderline', s:palette.none, s:palette.none, s:bold . s:underline)
+call s:HL('htmlBoldItalic', s:palette.none, s:palette.none, s:bold . s:italic)
+call s:HL('htmlBoldUnderlineItalic', s:palette.none, s:palette.none, s:bold . s:underline . s:italic)
+call s:HL('htmlUnderline', s:palette.none, s:palette.none, s:underline)
+call s:HL('htmlUnderlineItalic', s:palette.none, s:palette.none, s:underline . s:italic)
+call s:HL('htmlItalic', s:palette.none, s:palette.none, s:italic)
 highlight! link htmlTag Green
 highlight! link htmlEndTag Blue
 highlight! link htmlTagN OrangeItalic
@@ -927,7 +940,7 @@ highlight! link pythonNone Aqua
 highlight! link pythonDot Grey
 " }}}
 " semshi: https://github.com/numirias/semshi {{{
-call s:hi('semshiUnresolved', s:palette.yellow, s:palette.none, 'undercurl')
+call s:HL('semshiUnresolved', s:palette.yellow, s:palette.none, s:undercurl)
 highlight! link semshiImported Purple
 highlight! link semshiParameter Blue
 highlight! link semshiParameterUnused Grey
@@ -1017,6 +1030,7 @@ highlight! link goDeclType OrangeItalic
 " https://github.com/faith/vim-go
 " https://github.com/hardcoreplayers/go-nvim
 highlight! link goFunctionCall YellowBold
+call s:HL('goSpaceError', s:palette.grey1, s:palette.red)
 " }}}
 " polyglot: {{{
 highlight! link goPackage PurpleItalic
@@ -1254,7 +1268,7 @@ highlight! link ps1BuiltIn Yellow
 " }}}
 " }}}
 " VimL: {{{
-call s:hi('vimCommentTitle', s:palette.grey1, s:palette.none, 'bold')
+call s:HL('vimCommentTitle', s:palette.grey1, s:palette.none, s:bold)
 highlight! link vimLet Orange
 highlight! link vimFunction GreenBold
 highlight! link vimIsCommand Fg
@@ -1398,7 +1412,7 @@ highlight! link yamlKey Orange
 highlight! link yamlConstant Purple
 " }}}
 " Toml: {{{
-call s:hi('tomlTable', s:palette.purple, s:palette.none, 'bold')
+call s:HL('tomlTable', s:palette.purple, s:palette.none, s:bold)
 highlight! link tomlKey Orange
 highlight! link tomlBoolean Aqua
 highlight! link tomlTableArray tomlTable
@@ -1424,17 +1438,17 @@ highlight! link gitcommitArrow Grey
 highlight! link gitcommitFile Green
 " }}}
 " INI: {{{
-call s:hi('dosiniHeader', s:palette.red, s:palette.none, 'bold')
+call s:HL('dosiniHeader', s:palette.red, s:palette.none, s:bold)
 highlight! link dosiniLabel Yellow
 highlight! link dosiniValue Green
 highlight! link dosiniNumber Green
 " }}}
 " Help: {{{
-call s:hi('helpNote', s:palette.purple, s:palette.none, 'bold')
-call s:hi('helpHeadline', s:palette.red, s:palette.none, 'bold')
-call s:hi('helpHeader', s:palette.orange, s:palette.none, 'bold')
-call s:hi('helpURL', s:palette.green, s:palette.none, 'underline')
-call s:hi('helpHyperTextEntry', s:palette.yellow, s:palette.none, 'bold')
+call s:HL('helpNote', s:palette.purple, s:palette.none, s:bold)
+call s:HL('helpHeadline', s:palette.red, s:palette.none, s:bold)
+call s:HL('helpHeader', s:palette.orange, s:palette.none, s:bold)
+call s:HL('helpURL', s:palette.green, s:palette.none, s:underline)
+call s:HL('helpHyperTextEntry', s:palette.yellow, s:palette.none, s:bold)
 highlight! link helpHyperTextJump Yellow
 highlight! link helpCommand Aqua
 highlight! link helpExample Green
@@ -1444,8 +1458,8 @@ highlight! link helpSectionDelim Grey
 " }}}
 " Plugins: {{{
 " junegunn/vim-plug {{{
-call s:hi('plug1', s:palette.orange, s:palette.none, 'bold')
-call s:hi('plugNumber', s:palette.yellow, s:palette.none, 'bold')
+call s:HL('plug1', s:palette.orange, s:palette.none, s:bold)
+call s:HL('plugNumber', s:palette.yellow, s:palette.none, s:bold)
 highlight! link plug2 Green
 highlight! link plugBracket Grey
 highlight! link plugName Aqua
@@ -1462,13 +1476,13 @@ highlight! link plugEdge Yellow
 highlight! link plugSha Green
 " }}}
 " neoclide/coc.nvim {{{
-call s:hi('CocHoverRange', s:palette.none, s:palette.none, 'bold,underline')
-call s:hi('CocHintHighlight', s:palette.none, s:palette.none, 'undercurl', s:palette.aqua)
-call s:hi('CocErrorFloat', s:palette.red, s:palette.bg3)
-call s:hi('CocWarningFloat', s:palette.yellow, s:palette.bg3)
-call s:hi('CocInfoFloat', s:palette.blue, s:palette.bg3)
-call s:hi('CocHintFloat', s:palette.aqua, s:palette.bg3)
-" call s:hi('CocHighlightText', s:palette.none, s:palette.none, s:oceanic_material_current_word)
+call s:HL('CocHoverRange', s:palette.none, s:palette.none, s:bold . s:underline)
+call s:HL('CocHintHighlight', s:palette.none, s:palette.none, s:undercurl, s:palette.aqua)
+call s:HL('CocErrorFloat', s:palette.red, s:palette.bg3)
+call s:HL('CocWarningFloat', s:palette.yellow, s:palette.bg3)
+call s:HL('CocInfoFloat', s:palette.blue, s:palette.bg3)
+call s:HL('CocHintFloat', s:palette.aqua, s:palette.bg3)
+" call s:HL('CocHighlightText', s:palette.none, s:palette.none, s:oceanic_material_current_word)
 highlight! link CocErrorSign RedSign
 highlight! link CocWarningSign YellowSign
 highlight! link CocInfoSign BlueSign
@@ -1505,9 +1519,9 @@ highlight! link CocExplorerTimeCreated Aqua
 highlight! link CocExplorerTimeModified Aqua
 " }}}
 " dense-analysis/ale {{{
-call s:hi('ALEError', s:palette.none, s:palette.none, 'undercurl', s:palette.red)
-call s:hi('ALEWarning', s:palette.none, s:palette.none, 'undercurl', s:palette.yellow)
-call s:hi('ALEInfo', s:palette.none, s:palette.none, 'undercurl', s:palette.blue)
+call s:HL('ALEError', s:palette.none, s:palette.none, s:undercurl, s:palette.red)
+call s:HL('ALEWarning', s:palette.none, s:palette.none, s:undercurl, s:palette.yellow)
+call s:HL('ALEInfo', s:palette.none, s:palette.none, s:undercurl, s:palette.blue)
 highlight! link ALEErrorSign RedSign
 highlight! link ALEWarningSign YellowSign
 highlight! link ALEInfoSign BlueSign
@@ -1537,25 +1551,6 @@ highlight! link SyntasticWarning ALEWarning
 highlight! link SyntasticErrorSign RedSign
 highlight! link SyntasticWarningSign YellowSign
 " }}}
-" Yggdroot/LeaderF {{{
-if !exists('g:Lf_StlColorscheme')
-  let g:Lf_StlColorscheme = 'gruvbox_material'
-endif
-if !exists('g:Lf_PopupColorscheme')
-  let g:Lf_PopupColorscheme = 'gruvbox_material'
-endif
-call s:hi('Lf_hl_match', s:palette.green, s:palette.none, 'bold')
-call s:hi('Lf_hl_match0', s:palette.green, s:palette.none, 'bold')
-call s:hi('Lf_hl_match1', s:palette.aqua, s:palette.none, 'bold')
-call s:hi('Lf_hl_match2', s:palette.blue, s:palette.none, 'bold')
-call s:hi('Lf_hl_match3', s:palette.purple, s:palette.none, 'bold')
-call s:hi('Lf_hl_match4', s:palette.orange, s:palette.none, 'bold')
-call s:hi('Lf_hl_matchRefine', s:palette.red, s:palette.none, 'bold')
-highlight! link Lf_hl_cursorline Fg
-highlight! link Lf_hl_selection DiffAdd
-highlight! link Lf_hl_rgHighlight Visual
-highlight! link Lf_hl_gtagsHighlight Visual
-" }}}
 " junegunn/fzf.vim {{{
 let g:fzf_colors = {
       \ 'fg':      ['fg', 'Normal'],
@@ -1573,31 +1568,12 @@ let g:fzf_colors = {
       \ }
 " }}}
 " Shougo/denite.nvim {{{
-call s:hi('deniteMatchedChar', s:palette.green, s:palette.none, 'bold')
-call s:hi('deniteMatchedRange', s:palette.green, s:palette.none, 'bold,underline')
-call s:hi('deniteInput', s:palette.green, s:palette.bg4, 'bold')
-call s:hi('deniteStatusLineNumber', s:palette.purple, s:palette.bg4)
-call s:hi('deniteStatusLinePath', s:palette.fg0, s:palette.bg4)
+call s:HL('deniteMatchedChar', s:palette.green, s:palette.none, s:bold)
+call s:HL('deniteMatchedRange', s:palette.green, s:palette.none, s:bold . s:underline)
+call s:HL('deniteInput', s:palette.green, s:palette.bg4, s:bold)
+call s:HL('deniteStatusLineNumber', s:palette.purple, s:palette.bg4)
+call s:HL('deniteStatusLinePath', s:palette.fg0, s:palette.bg4)
 highlight! link deniteSelectedLin Green
-" }}}
-" kien/ctrlp.vim {{{
-call s:hi('CtrlPMatch', s:palette.green, s:palette.none, 'bold')
-call s:hi('CtrlPPrtBase', s:palette.bg4, s:palette.none)
-call s:hi('CtrlPLinePre', s:palette.bg4, s:palette.none)
-call s:hi('CtrlPMode1', s:palette.blue, s:palette.bg4, 'bold')
-call s:hi('CtrlPMode2', s:palette.bg0, s:palette.blue, 'bold')
-call s:hi('CtrlPStats', s:palette.grey2, s:palette.bg4, 'bold')
-highlight! link CtrlPNoEntries Red
-highlight! link CtrlPPrtCursor Blue
-" }}}
-" majutsushi/tagbar {{{
-highlight! link TagbarFoldIcon Green
-highlight! link TagbarSignature Green
-highlight! link TagbarKind Red
-highlight! link TagbarScope Orange
-highlight! link TagbarNestedKind Aqua
-highlight! link TagbarVisibilityPrivate Red
-highlight! link TagbarVisibilityPublic Blue
 " }}}
 " liuchengxu/vista.vim {{{
 highlight! link VistaBracket Grey
@@ -1641,30 +1617,17 @@ highlight! link NERDTreeLinkTarget Green
 highlight! link DirvishPathTail Aqua
 highlight! link DirvishArg Yellow
 " }}}
-" vim.org/netrw {{{
-" https://www.vim.org/scripts/script.php?script_id=1075
-highlight! link netrwDir Green
-highlight! link netrwClassify Green
-highlight! link netrwLink Grey
-highlight! link netrwSymLink Fg
-highlight! link netrwExe Yellow
-highlight! link netrwComment Grey
-highlight! link netrwList Aqua
-highlight! link netrwHelpCmd Blue
-highlight! link netrwCmdSep Grey
-highlight! link netrwVersion Orange
-" }}}
 " andymass/vim-matchup {{{
-call s:hi('MatchParenCur', s:palette.none, s:palette.none, 'bold')
-call s:hi('MatchWord', s:palette.none, s:palette.none, 'underline')
-call s:hi('MatchWordCur', s:palette.none, s:palette.none, 'underline')
+call s:HL('MatchParenCur', s:palette.none, s:palette.none, s:bold)
+call s:HL('MatchWord', s:palette.none, s:palette.none, s:underline)
+call s:HL('MatchWordCur', s:palette.none, s:palette.none, s:underline)
 " }}}
 " easymotion/vim-easymotion {{{
 highlight! link EasyMotionTarget Search
 highlight! link EasyMotionShade Grey
 " }}}
 " justinmk/vim-sneak {{{
-call s:hi('SneakLabelMask', s:palette.bg_green, s:palette.bg_green)
+call s:HL('SneakLabelMask', s:palette.bg_green, s:palette.bg_green)
 highlight! link Sneak Search
 highlight! link SneakLabel Search
 highlight! link SneakScope DiffText
@@ -1696,8 +1659,8 @@ let g:indentLine_color_term = s:palette.grey1[1]
 " }}}
 " nathanaelkane/vim-indent-guides {{{
 if get(g:, 'indent_guides_auto_colors', 1) == 0
-  call s:hi('IndentGuidesOdd', s:palette.bg0, s:palette.bg2)
-  call s:hi('IndentGuidesEven', s:palette.bg0, s:palette.bg3)
+  call s:HL('IndentGuidesOdd', s:palette.bg0, s:palette.bg2)
+  call s:HL('IndentGuidesEven', s:palette.bg0, s:palette.bg3)
 endif
 " }}}
 " luochen1990/rainbow {{{
@@ -1758,7 +1721,7 @@ highlight! link QuickmenuSpecial Purple
 highlight! link QuickmenuHeader Orange
 " }}}
 " mbbill/undotree {{{
-call s:hi('UndotreeSavedBig', s:palette.purple, s:palette.none, 'bold')
+call s:HL('UndotreeSavedBig', s:palette.purple, s:palette.none, s:bold)
 highlight! link UndotreeNode Orange
 highlight! link UndotreeNodeCurrent Red
 highlight! link UndotreeSeq Green
@@ -1770,8 +1733,8 @@ highlight! link UndotreeCurrent Aqua
 highlight! link UndotreeSavedSmall Purple
 " }}}
 " unblevable/quick-scope {{{
-call s:hi('QuickScopePrimary', s:palette.aqua, s:palette.none, 'underline')
-call s:hi('QuickScopeSecondary', s:palette.blue, s:palette.none, 'underline')
+call s:HL('QuickScopePrimary', s:palette.aqua, s:palette.none, s:underline)
+call s:HL('QuickScopeSecondary', s:palette.blue, s:palette.none, s:underline)
 " }}}
 " APZelos/blamer.nvim {{{
 highlight! link Blamer Grey
@@ -1833,4 +1796,3 @@ endif
 " }}}
 
 " vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
-
