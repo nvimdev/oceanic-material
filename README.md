@@ -1,6 +1,6 @@
 # Oceanic Material
 
-Oceanice_Material colorscheme for vim/neovim
+Oceanice_Material is a dark colorscheme for vim/neovim
 
 - Most filetype support
 - Most plugins support
