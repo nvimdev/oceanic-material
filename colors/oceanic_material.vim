@@ -1528,30 +1528,18 @@ function! s:apply_syntax_highlightings()
   exec 'hi SneakScope' . s:fg_bg0 . s:bg_fg0
   "===============================================================
   " terryma/vim-multiple-cursors
-  highlight! link multiple_cursors_cursor Cursor
-  highlight! link multiple_cursors_visual Visual
-  "===============================================================
-  " mg979/vim-visual-multi {{{
-  "===============================================================
-  let g:VM_Mono_hl = 'Cursor'
-  let g:VM_Extend_hl = 'Visual'
-  let g:VM_Cursor_hl = 'Cursor'
-  let g:VM_Insert_hl = 'Cursor'
+  exec 'hi multiple_cursors_cursor'. s:fg_none . s:bg_none . s:reverse
+  exec 'hi multiple_cursors_visual'. s:fg_none. s:bg_none. s:reverse
   "===============================================================
   " dominikduda/vim_current_word {{{
   "===============================================================
-  highlight! link CurrentWord CocHighlightText
-  highlight! link CurrentWordTwins CocHighlightText
+  exec 'hi CursorWord'. s:bg_fg3
+  exec 'hi CursorWordTwins'. s:bg_fg3
   "===============================================================
   " itchyny/vim-cursorword {{{
   "===============================================================
-  highlight! link CursorWord0 CocHighlightText
-  highlight! link CursorWord1 CocHighlightText
-  "===============================================================
-  " Yggdroot/indentLine {{{
-  "===============================================================
-  let g:indentLine_color_gui = s:colors.grey1[0]
-  let g:indentLine_color_term = s:colors.grey1[1]
+  exec 'hi CursorWord0'. s:bg_fg3
+  exec 'hi CursorWord1'. s:bg_fg3
   "===============================================================
   " luochen1990/rainbow {{{
   if !exists('g:rbpt_colorpairs')
