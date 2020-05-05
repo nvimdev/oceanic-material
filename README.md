@@ -2,6 +2,10 @@
 
 Oceanice_Material colorscheme for vim/neovim
 
+- Most filetype support
+- Most plugins support
+- Fast startup time
+
 ## Installation
 
 - vim-plug
@@ -39,11 +43,18 @@ To use transparent background, add this option:
 let g:oceanic_material_transparent_background = 1
 ```
 
+If you doesn't like underline reverse undercurl, you can add these option:
+
+```viml
+let g:oceanic_material_enable_underline = 1
+let g:oceanic_material_enable_undercurl = 1
+let g:oceanic_material_enable_reverse = 1
+```
+
 ## Thanks to
 
 - [equinusocio/material-theme](https://github.com/equinusocio/material-theme)
 
+- [NLKNguyen/papercolor-theme](https://github.com/NLKNguyen/papercolor-theme)
+
 - [mhartington/oceanic-next](https://github.com/mhartington/oceanic-next)
-
-- [sainnhe/gruvbox-material](https://github.com/sainnhe/gruvbox-material)
-
