@@ -1553,6 +1553,10 @@ function! s:apply_syntax_highlightings()
   " machakann/vim-sandwich
   "===============================================================
   exec 'hi OperatorSandwichChange' .s:fg_fg0 . s:bg_darkgreen
+  "===============================================================
+  "kristijanhusak/vim-dadbod-ui
+  "===============================================================
+  exec 'hi dbui_tables' . s:fg_blue . s:bg_none
 endfunction
 
 command! -nargs=0 OceanicMaterial :call g:OceanicMaterial()
