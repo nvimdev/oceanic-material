@@ -131,6 +131,7 @@ function! s:set_color_variables() abort
   call s:create_color_variables('yellow', 'bg')
   call s:create_color_variables('bg5', 'bg')
   call s:create_color_variables('fg3', 'bg')
+  call s:create_color_variables('darkgreen', 'bg')
   " create fontcolor variables
   call s:create_color_variables('fg0','fg')
   call s:create_color_variables('fg1','fg')
@@ -1582,7 +1583,8 @@ function! s:apply_syntax_highlightings()
   exec 'hi WhichKeyGroup' . s:fg_yellow . s:bg_none
   exec 'hi WhichKeyDesc' . s:fg_blue . s:bg_none
   "===============================================================
-  " cohama/agit.vim {{{
+  " cohama/agit.vim
+  "===============================================================
   exec 'hi agitTree' . s:fg_grey1 . s:bg_none
   exec 'hi agitDate' . s:fg_green . s:bg_none
   exec 'hi agitRemote' . s:fg_red . s:bg_none
@@ -1596,6 +1598,10 @@ function! s:apply_syntax_highlightings()
   exec 'hi agitDiffRemove' . s:fg_red . s:bg_none
   exec 'hi agitDiffAdd' . s:fg_green . s:bg_none
   exec 'hi agitDiffHeader' . s:fg_purple . s:bg_none
+  "===============================================================
+  " machakann/vim-sandwich
+  "===============================================================
+  exec 'hi OperatorSandwichChange' .s:fg_fg0 . s:bg_darkgreen
 endfunction
 
 command! -nargs=0 OceanicMaterial :call g:OceanicMaterial()
