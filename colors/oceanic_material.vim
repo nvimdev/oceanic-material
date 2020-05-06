@@ -96,69 +96,21 @@ function! g:OceanicMaterial()
   echo s:oceanic_material_version
 endfunction
 
-function! s:create_color_variables(color_name,color_type) abort
-  let palette = get(s:colors,a:color_name)
-  if a:color_type == 'fg'
-    let {'s:'. a:color_type .'_' . a:color_name} = ' guifg='.palette[0].' ctermfg='.palette[1].' '
-  elseif a:color_type == 'bg'
-    let {'s:'. a:color_type .'_' . a:color_name} = ' guibg='.palette[0].' ctermbg='.palette[1]. ' '
-  elseif a:color_type == 'sp'
-    let {'s:'. a:color_type .'_' . a:color_name} = ' guisp='.palette[0] . ' '
-  endif
+function! s:create_color_variables() abort
+  for key in keys(s:colors)
+    let palette = get(s:colors,key)
+    let {'s:fg_' . key} = ' guifg='.palette[0].' ctermfg='.palette[1].' '
+    let {'s:bg_' . key} = ' guibg='.palette[0].' ctermbg='.palette[1]. ' '
+  endfor
+  let s:sp_red = ' guisp='.s:colors.red[0] . ' '
+  let s:sp_blue = ' guisp='.s:colors.blue[0] . ' '
+  let s:sp_aqua = ' guisp='.s:colors.aqua[0] . ' '
+  let s:sp_yellow = ' guisp='.s:colors.yellow[0] . ' '
+  let s:sp_purple = ' guisp='.s:colors.purple[0] . ' '
 endfunction
 
 function! s:set_color_variables() abort
-  " create background color variables
-  call s:create_color_variables('bg0', 'bg')
-  call s:create_color_variables('fg0','bg')
-  call s:create_color_variables('bg1', 'bg')
-  call s:create_color_variables('bg2', 'bg')
-  call s:create_color_variables('bg3', 'bg')
-  call s:create_color_variables('bg4', 'bg')
-  call s:create_color_variables('bg_red', 'bg')
-  call s:create_color_variables('bg_green', 'bg')
-  call s:create_color_variables('bg_diff_blue', 'bg')
-  call s:create_color_variables('bg_diff_red', 'bg')
-  call s:create_color_variables('bg_diff_green', 'bg')
-  call s:create_color_variables('bg_visual_blue', 'bg')
-  call s:create_color_variables('bg_visual_red', 'bg')
-  call s:create_color_variables('bg_visual_green', 'bg')
-  call s:create_color_variables('none', 'bg')
-  call s:create_color_variables('grey0', 'bg')
-  call s:create_color_variables('grey2', 'bg')
-  call s:create_color_variables('green', 'bg')
-  call s:create_color_variables('red', 'bg')
-  call s:create_color_variables('yellow', 'bg')
-  call s:create_color_variables('bg5', 'bg')
-  call s:create_color_variables('fg3', 'bg')
-  call s:create_color_variables('darkgreen', 'bg')
-  " create fontcolor variables
-  call s:create_color_variables('fg0','fg')
-  call s:create_color_variables('fg1','fg')
-  call s:create_color_variables('bg0','fg')
-  call s:create_color_variables('bg1','fg')
-  call s:create_color_variables('bg3','fg')
-  call s:create_color_variables('bg5','fg')
-  call s:create_color_variables('grey0','fg')
-  call s:create_color_variables('grey1','fg')
-  call s:create_color_variables('grey2','fg')
-  call s:create_color_variables('red', 'fg')
-  call s:create_color_variables('orange', 'fg')
-  call s:create_color_variables('yellow', 'fg')
-  call s:create_color_variables('green', 'fg')
-  call s:create_color_variables('aqua', 'fg')
-  call s:create_color_variables('blue', 'fg')
-  call s:create_color_variables('purple', 'fg')
-  call s:create_color_variables('none', 'fg')
-  call s:create_color_variables('bg_green', 'fg')
-  call s:create_color_variables('darkgreen', 'fg')
-  " create guisp color variables
-  call s:create_color_variables('red', 'sp')
-  call s:create_color_variables('blue', 'sp')
-  call s:create_color_variables('aqua', 'sp')
-  call s:create_color_variables('purple', 'sp')
-  call s:create_color_variables('yellow', 'sp')
-
+  call s:create_color_variables()
   let s:terminal = {
         \ 'black':    s:colors.bg0,
         \ 'red':      s:colors.red,
@@ -187,28 +139,25 @@ function! s:set_color_variables() abort
   let g:terminal_color_15 = s:terminal.white[0]
 endfunction
 
-
 " Oceanic Material Transparent BackGround
 function! s:apply_syntax_highlightings()
   if s:oceanic_material_transparent_background
     exec 'hi Normal' . s:fg_fg0 . s:bg_none
     exec 'hi Terminal' . s:fg_fg0 . s:bg_none
-    exec 'hi EndOfBuffer' . s:fg_bg0 . s:bg_none
     exec 'hi FoldColumn' . s:fg_grey0 . s:bg_none
-    exec 'hi Folded' . s:fg_grey1 . s:bg_none
     exec 'hi SignColumn' . s:fg_fg0 . s:bg_none
     exec 'hi ToolbarLine' . s:fg_fg0 . s:bg_none
     exec 'hi VertSplit' . s:fg_bg0 . s:bg_none
   else
     exec 'hi Normal' . s:fg_fg0 . s:bg_bg0
     exec 'hi Terminal' . s:fg_fg0 . s:bg_bg0
-    exec 'hi EndOfBuffer' . s:fg_bg0 . s:bg_bg0
-    exec 'hi Folded' . s:fg_grey1 . s:bg_bg2
     exec 'hi ToolbarLine' . s:fg_fg1 . s:bg_bg3
     exec 'hi SignColumn' . s:fg_fg0 . s:bg_bg0
     exec 'hi FoldColumn' . s:fg_grey0 . s:bg_bg2
     exec 'hi VertSplit' . s:fg_bg0 . s:bg_bg5
   endif
+  exec 'hi Folded' . s:fg_grey1 . s:bg_bg2
+  exec 'hi EndOfBuffer' . s:fg_bg0 . s:bg_none
   exec 'hi IncSearch'. s:fg_bg0 . s:bg_bg_red
   exec 'hi Search'. s:fg_bg0 . s:bg_bg_green
   exec 'hi ColorColumn'. s:fg_none . s:bg_bg1
@@ -1029,7 +978,8 @@ function! s:apply_syntax_highlightings()
   exec 'hi rustPubScopeCrate' . s:fg_purple . s:bg_none . s:italic
   "===============================================================
   " Swift:
-  " swift.vim: https://github.com/keith/swift.vim {{{
+  " swift.vim: https://github.com/keith/swift.vim
+  "===============================================================
   exec 'hi swiftInterpolatedWrapper' . s:fg_yellow . s:bg_none
   exec 'hi swiftInterpolatedString' . s:fg_blue . s:bg_none
   exec 'hi swiftProperty' . s:fg_aqua . s:bg_none
@@ -1055,8 +1005,9 @@ function! s:apply_syntax_highlightings()
   exec 'hi phpClass' . s:fg_orange . s:bg_none
   exec 'hi phpSuperglobals' . s:fg_purple . s:bg_none
   "===============================================================
-  " Ruby: {{{
-  " builtin: https://github.com/vim-ruby/vim-ruby {{{
+  " Ruby:
+  " builtin: https://github.com/vim-ruby/vim-ruby
+  "===============================================================
   exec 'hi rubyKeywordAsMethod' . s:fg_green . s:bg_none . s:bold
   exec 'hi rubyInterpolation' . s:fg_yellow . s:bg_none
   exec 'hi rubyInterpolationDelimiter' . s:fg_yellow . s:bg_none
