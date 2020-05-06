@@ -1004,8 +1004,8 @@ function! s:apply_syntax_highlightings()
   exec 'hi goDeclType' . s:fg_orange . s:bg_none . s:italic
   exec 'hi goFunctionCall' . s:fg_yellow . s:bg_none . s:bold
   exec 'hi goSpaceError'. s:fg_grey1. s:bg_red
-  exec 'hi goPackage' . s:fg_purple . s:bg_none . s:italic
-  exec 'hi goImport' . s:fg_purple . s:bg_none . s:italic
+  exec 'hi goPackage' . s:fg_purple . s:bg_none . s:bold
+  exec 'hi goImport' . s:fg_purple . s:bg_none . s:bold
   exec 'hi goVarArgs' . s:fg_blue . s:bg_none
   exec 'hi goBuiltins' . s:fg_green . s:bg_none . s:bold
   exec 'hi goPredefinedIdentifiers' . s:fg_aqua . s:bg_none
