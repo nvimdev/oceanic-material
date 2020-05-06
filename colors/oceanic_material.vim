@@ -15,7 +15,7 @@ endif
 
 set background=dark
 
-let g:colors_name = "oceanic_material"
+let g:colors_name = "oceanic"
 let s:oceanic_material_version = '0.1.0'
 
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
@@ -96,69 +96,18 @@ function! g:OceanicMaterial()
   echo s:oceanic_material_version
 endfunction
 
-function! s:create_color_variables(color_name,color_type) abort
-  let palette = get(s:colors,a:color_name)
-  if a:color_type == 'fg'
-    let {'s:'. a:color_type .'_' . a:color_name} = ' guifg='.palette[0].' ctermfg='.palette[1].' '
-  elseif a:color_type == 'bg'
-    let {'s:'. a:color_type .'_' . a:color_name} = ' guibg='.palette[0].' ctermbg='.palette[1]. ' '
-  elseif a:color_type == 'sp'
-    let {'s:'. a:color_type .'_' . a:color_name} = ' guisp='.palette[0] . ' '
-  endif
+function! s:create_color_variables() abort
+  for key in keys(s:colors)
+    let palette = get(s:colors,key)
+    let {'s:fg_' . key} = ' guifg='.palette[0].' ctermfg='.palette[1].' '
+    let {'s:bg_' . key} = ' guibg='.palette[0].' ctermbg='.palette[1]. ' '
+    let {'s:sp_' . key} = ' guisp='.palette[0] . ' '
+  endfor
 endfunction
 
 function! s:set_color_variables() abort
   " create background color variables
-  call s:create_color_variables('bg0', 'bg')
-  call s:create_color_variables('fg0','bg')
-  call s:create_color_variables('bg1', 'bg')
-  call s:create_color_variables('bg2', 'bg')
-  call s:create_color_variables('bg3', 'bg')
-  call s:create_color_variables('bg4', 'bg')
-  call s:create_color_variables('bg_red', 'bg')
-  call s:create_color_variables('bg_green', 'bg')
-  call s:create_color_variables('bg_diff_blue', 'bg')
-  call s:create_color_variables('bg_diff_red', 'bg')
-  call s:create_color_variables('bg_diff_green', 'bg')
-  call s:create_color_variables('bg_visual_blue', 'bg')
-  call s:create_color_variables('bg_visual_red', 'bg')
-  call s:create_color_variables('bg_visual_green', 'bg')
-  call s:create_color_variables('none', 'bg')
-  call s:create_color_variables('grey0', 'bg')
-  call s:create_color_variables('grey2', 'bg')
-  call s:create_color_variables('green', 'bg')
-  call s:create_color_variables('red', 'bg')
-  call s:create_color_variables('yellow', 'bg')
-  call s:create_color_variables('bg5', 'bg')
-  call s:create_color_variables('fg3', 'bg')
-  call s:create_color_variables('darkgreen', 'bg')
-  " create fontcolor variables
-  call s:create_color_variables('fg0','fg')
-  call s:create_color_variables('fg1','fg')
-  call s:create_color_variables('bg0','fg')
-  call s:create_color_variables('bg1','fg')
-  call s:create_color_variables('bg3','fg')
-  call s:create_color_variables('bg5','fg')
-  call s:create_color_variables('grey0','fg')
-  call s:create_color_variables('grey1','fg')
-  call s:create_color_variables('grey2','fg')
-  call s:create_color_variables('red', 'fg')
-  call s:create_color_variables('orange', 'fg')
-  call s:create_color_variables('yellow', 'fg')
-  call s:create_color_variables('green', 'fg')
-  call s:create_color_variables('aqua', 'fg')
-  call s:create_color_variables('blue', 'fg')
-  call s:create_color_variables('purple', 'fg')
-  call s:create_color_variables('none', 'fg')
-  call s:create_color_variables('bg_green', 'fg')
-  call s:create_color_variables('darkgreen', 'fg')
-  " create guisp color variables
-  call s:create_color_variables('red', 'sp')
-  call s:create_color_variables('blue', 'sp')
-  call s:create_color_variables('aqua', 'sp')
-  call s:create_color_variables('purple', 'sp')
-  call s:create_color_variables('yellow', 'sp')
-
+  call s:create_color_variables()
   let s:terminal = {
         \ 'black':    s:colors.bg0,
         \ 'red':      s:colors.red,
