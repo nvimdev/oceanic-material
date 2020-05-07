@@ -744,14 +744,6 @@ function! s:apply_syntax_highlightings()
   exec 'hi typescriptBOMHistoryProp' . s:fg_aqua . s:bg_none
   exec 'hi typescriptMathStaticProp' . s:fg_aqua . s:bg_none
   "===============================================================
-  " Typescript React:
-  " https://github.com/peitalin/vim-jsx-typescript
-  "===============================================================
-  exec 'hi tsxTagName' . s:fg_purple . s:bg_none
-  exec 'hi tsxCloseTagName' . s:fg_orange . s:bg_none
-  exec 'hi tsxEqual' . s:fg_aqua . s:bg_none
-  exec 'hi tsxAttrib' . s:fg_yellow . s:bg_none
-  "===============================================================
   " Dart:
   " dart-lang: https://github.com/dart-lang/dart-vim-plugin
   "===============================================================
@@ -1237,111 +1229,6 @@ function! s:apply_syntax_highlightings()
   exec 'hi dosiniValue' . s:fg_green . s:bg_none
   exec 'hi dosiniNumber' . s:fg_green . s:bg_none
   "===============================================================
-  exec 'hi cmakeCommand' . s:fg_orange . s:bg_none
-  exec 'hi cmakeKWconfigure_package_config_file' . s:fg_yellow . s:bg_none
-  exec 'hi cmakeKWwrite_basic_package_version_file' . s:fg_yellow . s:bg_none
-  exec 'hi cmakeKWExternalProject' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_compile_definitions' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_compile_options' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_custom_command' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_custom_target' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_definitions' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_dependencies' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_executable' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_library' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_link_options' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_subdirectory' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWadd_test' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWbuild_command' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWcmake_host_system_information' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWcmake_minimum_required' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWcmake_parse_arguments' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWcmake_policy' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWconfigure_file' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWcreate_test_sourcelist' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_build' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_configure' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_coverage' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_memcheck' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_run_script' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_start' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_submit' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_test' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_update' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWctest_upload' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWdefine_property' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWdoxygen_add_docs' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWenable_language' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWenable_testing' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWexec_program' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWexecute_process' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWexport' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWexport_library_dependencies' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWfile' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWfind_file' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWfind_library' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWfind_package' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWfind_path' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWfind_program' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWfltk_wrap_ui' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWforeach' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWfunction' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWget_cmake_property' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWget_directory_property' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWget_filename_component' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWget_property' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWget_source_file_property' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWget_target_property' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWget_test_property' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWif' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWinclude' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWinclude_directories' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWinclude_external_msproject' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWinclude_guard' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWinstall' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWinstall_files' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWinstall_programs' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWinstall_targets' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWlink_directories' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWlist' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWload_cache' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWload_command' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWmacro' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWmark_as_advanced' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWmath' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWmessage' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWoption' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWproject' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWqt_wrap_cpp' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWqt_wrap_ui' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWremove' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWseparate_arguments' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWset' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWset_directory_properties' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWset_property' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWset_source_files_properties' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWset_target_properties' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWset_tests_properties' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWsource_group' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWstring' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWsubdirs' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtarget_compile_definitions' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtarget_compile_features' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtarget_compile_options' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtarget_include_directories' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtarget_link_directories' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtarget_link_libraries' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtarget_link_options' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtarget_precompile_headers' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtarget_sources' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtry_compile' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWtry_run' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWunset' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWuse_mangled_mesa' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWvariable_requires' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWvariable_watch' . s:fg_aqua . s:bg_none
-  exec 'hi cmakeKWwrite_file' . s:fg_aqua . s:bg_none
-  "===============================================================
   " neoclide/coc.nvim
   "===============================================================
   exec 'hi CocHoverRange'. s:fg_none. s:bg_none. s:bold . s:underline
@@ -1398,13 +1285,6 @@ function! s:apply_syntax_highlightings()
   exec 'hi NeomakeVirtualtextWarning' . s:fg_grey1 . s:bg_none
   exec 'hi NeomakeVirtualtextInfo' . s:fg_grey1 . s:bg_none
   exec 'hi NeomakeVirtualtextMessag' . s:fg_grey1 . s:bg_none
-  "===============================================================
-  " vim-syntastic/syntastic
-  "===============================================================
-  exec 'hi SyntasticError' . s:fg_none . s:bg_none . s:undercurl . s:sp_red
-  exec 'hi SyntasticWarning' . s:fg_none . s:bg_none . s:undercurl . s:sp_yellow
-  exec 'hi SyntasticErrorSign' . s:fg_red . s:bg_none
-  exec 'hi SyntasticWarningSign' . s:fg_yellow . s:bg_none
   "===============================================================
   " Shougo/denite.nvim
   "===============================================================
