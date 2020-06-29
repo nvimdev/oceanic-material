@@ -2,18 +2,13 @@
 
 ![](https://user-images.githubusercontent.com/41671631/81046200-6a971880-8eea-11ea-999d-4170a364ec1d.png)
 
-Oceanice_Material is a dark colorscheme for vim/neovim from
-[Thinkvim](https://github.com/hardcoreplayers/ThinkVim)
-
-- Most filetype support
-- Most plugins support
-- Fast startup time
+Oceanice_Material is a dark colorscheme for vim/neovim
 
 ## Installation
 
 - vim-plug
   ```viml
-  plug 'hardcoreplayers/oceanic-material'
+  Plug 'hardcoreplayers/oceanic-material'
   ```
 - dein
   ```viml
@@ -53,6 +48,69 @@ let g:oceanic_material_enable_underline = 1
 let g:oceanic_material_enable_undercurl = 1
 let g:oceanic_material_enable_reverse = 1
 ```
+
+## Support Filetype
+
+- Markdown
+- vim-restructuredtext
+- Html
+- Latex
+- Xml
+- css
+- Sass
+- scss
+- Less
+- Javascript
+- Typescript
+- JavascriptReact TypescriptReact
+- Dart
+- CoffeeScript
+- C/C++
+- chromatica
+- vim-lsp-cxx-highlight
+- ObjectiveC
+- Python
+- semshi
+- lua
+- java
+- kotlin
+- Scala
+- Go
+- Rust
+- Swift
+- PHP
+- Ruby
+- Haskell
+- Perl
+- Ocaml
+- Erlang
+- Elixir
+- Clojure
+- Matlab
+- Vimscript
+- Makefile
+- Json/Toml/Yaml/Ini
+- Diff/Git commit
+
+## Support Plugin
+
+- neoclide/coc.nvim
+- dense-analysis/ale
+- neomake/neomake
+- Shougo/denite.nvim
+- liuchengxu/vista.vim
+- scrooloose/nerdtree
+- andymass/vim-matchup
+- easymotion/vim-easymotion
+- justinmk/vim-sneak
+- luochen1990/rainbow
+- itchyny/vim-cursorword
+- mhinz/vim-startify
+- liuchengxu/vim-which-key
+- machakann/vim-sandwich
+- kristijanhusak/vim-dadbod-ui
+- Shougo/defx.nvim
+- hardcoreplayers/dashboard-nvim
 
 # Donate
 
