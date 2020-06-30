@@ -1,6 +1,6 @@
 # Oceanic Material
 
-![](https://user-images.githubusercontent.com/41671631/81046200-6a971880-8eea-11ea-999d-4170a364ec1d.png)
+![](https://user-images.githubusercontent.com/41671631/86095188-28521800-bae4-11ea-8a7f-1de8aac856bb.png)
 
 Oceanice_Material is a dark colorscheme for vim/neovim
 
