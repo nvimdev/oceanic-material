@@ -75,12 +75,12 @@ let s:colors = {
       \ 'fg0':              ['#d4be98',   '223'],
       \ 'fg1':              ['#ddc7a1',   '223'],
       \ 'fg3':              ['#4f5b66',   '240'],
-      \ 'red':              ['#ea6962',   '167'],
+      \ 'red':              ['#EC5f67',   '203'],
       \ 'orange':           ['#e78a4e',   '208'],
       \ 'yellow':           ['#d8a657',   '214'],
       \ 'green':            ['#a9b665',   '142'],
-      \ 'aqua':             ['#8abeb7',   '109'],
-      \ 'blue':             ['#81a2be',   '110'],
+      \ 'aqua':             ['#62b3b2',   '73'],
+      \ 'blue':             ['#6699cc',   '68'],
       \ 'purple':           ['#d3869b',   '175'],
       \ 'darkgreen':        ['#5faf5f',    '71'],
       \ 'black':            ['#000000',    '0'],
@@ -90,6 +90,7 @@ let s:colors = {
       \ 'grey0':            ['#7c6f64',   '243'],
       \ 'grey1':            ['#928374',   '245'],
       \ 'grey2':            ['#a89984',   '246'],
+      \ 'operator_base05':  ['#c0c5ce',   '251'],
       \ 'none':             ['NONE',      'NONE']
   \ }
 
@@ -228,7 +229,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi Tag'. s:fg_orange
   exec 'hi Label'. s:fg_orange
   exec 'hi Structure'. s:fg_orange
-  exec 'hi Operator'. s:fg_orange
+  exec 'hi Operator'. s:fg_operator_base05
   exec 'hi Title'. s:fg_orange. s:bold
   exec 'hi Special'. s:fg_yellow
   exec 'hi SpecialChar'. s:fg_yellow
@@ -927,13 +928,14 @@ function! s:apply_syntax_highlightings()
   exec 'hi goDeclType' . s:fg_orange  . s:italic
   exec 'hi goFunctionCall' . s:fg_yellow  . s:bold
   exec 'hi goSpaceError'. s:fg_grey1. s:bg_red
-  exec 'hi goPackage' . s:fg_purple  . s:bold
-  exec 'hi goImport' . s:fg_purple  . s:bold
   exec 'hi goVarArgs' . s:fg_blue
   exec 'hi goBuiltins' . s:fg_green  . s:bold
-  exec 'hi goPredefinedIdentifiers' . s:fg_blue
+  exec 'hi goPredefinedIdentifiers' . s:fg_orange
   exec 'hi goVar' . s:fg_orange
   exec 'hi goField' . s:fg_aqua
+  exec 'hi goDeclaration' . s:fg_purple
+  exec 'hi goConst' . s:fg_orange
+  exec 'hi goFunction' . s:fg_blue
   "===============================================================
   " Rust:
   " builtin: https://github.com/rust-lang/rust.vim
