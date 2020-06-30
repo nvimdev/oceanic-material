@@ -94,6 +94,10 @@ let s:colors = {
       \ 'none':             ['NONE',      'NONE']
   \ }
 
+function! g:OceanicMaterialPalette()
+  return copy(s:colors)
+endfunction
+
 function! g:OceanicMaterial()
   echo s:oceanic_material_version
 endfunction
