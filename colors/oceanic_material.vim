@@ -24,39 +24,39 @@ endif
 
 let s:oceanic_material_transparent_background = get(g:,'oceanic_material_transparent_background',0)
 " if set to 1,disable bold
-let s:oceanic_material_enable_bold = get(g:,'oceanic_material_enable_bold', 0)
+let s:oceanic_material_allow_bold = get(g:,'oceanic_material_enable_bold', 0)
 " if set to 1,enable italic
-let s:oceanic_material_enable_italic = get(g:,'oceanic_material_enable_italic',0)
+let s:oceanic_material_allow_italic = get(g:,'oceanic_material_enable_italic',0)
 " if set to 1,disable underline
-let s:oceanic_material_enable_underline = get(g:,'oceanic_material_enable_underline',0)
+let s:oceanic_material_allow_underline = get(g:,'oceanic_material_enable_underline',0)
 " if set to 1,disable reverse
-let s:oceanic_material_enable_reverse = get(g:,'oceanic_material_enable_reverse',0)
+let s:oceanic_material_allow_reverse = get(g:,'oceanic_material_enable_reverse',0)
 " if set to 1,disable reverse
-let s:oceanic_material_enable_undercurl = get(g:,'oceanic_material_enable_undercurl',0)
+let s:oceanic_material_allow_undercurl = get(g:,'oceanic_material_enable_undercurl',0)
 
-let s:bold = ' cterm=bold gui=bold '
-if s:oceanic_material_enable_bold == 1
-  let s:bold = ''
+let s:bold = ''
+if s:oceanic_material_allow_bold == 1
+  let s:bold = ' cterm=bold gui=bold '
 endif
 
 let s:italic = ''
-if s:oceanic_material_enable_italic == 1
+if s:oceanic_material_allow_italic == 1
   let s:italic = ' cterm=italic gui=italic '
 endif
 
-let s:underline = ' cterm=underline gui=underline '
-if s:oceanic_material_enable_underline == 1
-  let s:underline = ''
+let s:underline = ''
+if s:oceanic_material_allow_underline == 1
+  let s:underline = ' cterm=underline gui=underline '
 endif
 
-let s:reverse = ' cterm=reverse gui=reverse '
-if s:oceanic_material_enable_reverse == 1
-  let s:reverse = ''
+let s:reverse = ''
+if s:oceanic_material_allow_reverse == 1
+  let s:reverse = ' cterm=reverse gui=reverse '
 endif
 
-let s:undercurl = ' cterm=undercurl gui=undercurl '
-if s:oceanic_material_enable_undercurl == 1
-  let s:undercurl = ''
+let s:undercurl = ''
+if s:oceanic_material_allow_undercurl == 1
+  let s:undercurl = ' cterm=undercurl gui=undercurl '
 endif
 
 let s:colors = {
@@ -70,11 +70,11 @@ let s:colors = {
       \ 'bg_visual_green':  ['#333e34',   '22'],
       \ 'bg_diff_red':      ['#3c1f1e',   '52'],
       \ 'bg_visual_red':    ['#442e2d',   '52'],
-      \ 'bg_diff_blue':     ['#0d3138',   '17'],
-      \ 'bg_visual_blue':   ['#2e3b3b',   '17'],
+      \ 'bg_diff_blue':     ['#0d3138',   '18'],
+      \ 'bg_visual_blue':   ['#2e3b3b',   '18'],
       \ 'fg0':              ['#d4be98',   '223'],
       \ 'fg1':              ['#ddc7a1',   '223'],
-      \ 'fg3':              ['#4f5b66',   '240'],
+      \ 'fg3':              ['#4f5b66',   '17'],
       \ 'red':              ['#EC5f67',   '203'],
       \ 'orange':           ['#e78a4e',   '208'],
       \ 'yellow':           ['#d8a657',   '214'],
@@ -125,7 +125,9 @@ function! s:set_color_variables() abort
         \ 'cyan':     s:colors.aqua,
         \ 'blue':     s:colors.blue,
         \ 'purple':   s:colors.purple,
-        \ 'white':    s:colors.fg0
+        \ 'white':    s:colors.fg0,
+        \ 'light_grey': s:colors.bg5,
+        \ 'dark_grey': s:colors.grey0,
         \ }
   let g:terminal_color_0 = s:terminal.black[0]
   let g:terminal_color_1 = s:terminal.red[0]
@@ -134,8 +136,8 @@ function! s:set_color_variables() abort
   let g:terminal_color_4 = s:terminal.blue[0]
   let g:terminal_color_5 = s:terminal.purple[0]
   let g:terminal_color_6 = s:terminal.cyan[0]
-  let g:terminal_color_7 = s:terminal.white[0]
-  let g:terminal_color_8 = s:terminal.black[0]
+  let g:terminal_color_7 = s:terminal.light_grey[0]
+  let g:terminal_color_8 = s:terminal.dark_grey[0]
   let g:terminal_color_9 = s:terminal.red[0]
   let g:terminal_color_10 = s:terminal.green[0]
   let g:terminal_color_11 = s:terminal.yellow[0]
