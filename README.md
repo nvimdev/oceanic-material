@@ -23,31 +23,14 @@ colorscheme oceanic_material
 
 ## Options
 
-If you doesn't like some of the code to be bolded, like functions and language controls, add this option to vimrc:
-
-```viml
-let g:oceanic_material_enable_bold = 0
-```
-
-If you want comments to be in italic, also add this:
-
-```viml
-let g:oceanic_material_enable_italic = 1
-```
-
-To use transparent background, add this option:
-
-```viml
-let g:oceanic_material_transparent_background = 1
-```
-
-If you doesn't like underline reverse undercurl, you can add these option:
-
-```viml
-let g:oceanic_material_enable_underline = 1
-let g:oceanic_material_enable_undercurl = 1
-let g:oceanic_material_enable_reverse = 1
-```
+| option                                      | value                             | default                          |
+| ------------------------------------------- | --------------------------------- | -------------------------------- |
+| `g:oceanic_material_transparent_background` | 1: enable transparent background  | 0:disable transparent background |
+| `g:oceanic_material_allow_bold`             | 1: use bold for certain text      | 0: not at all                    |
+| `g:oceanic_material_allow_italic`           | 1: use italic for certain text    | 0: not at all                    |
+| `g:oceanic_material_allow_underline`        | 1: use underline for certain text | 0: not at all                    |
+| `g:oceanic_material_allow_undercurl`        | 1: use undercurl for certain text | 0: not at all                    |
+| `g:oceanic_material_allow_reverse`          | 1: use reverse for certain text   | 0: not at all                    |
 
 ## Support Filetype
 
