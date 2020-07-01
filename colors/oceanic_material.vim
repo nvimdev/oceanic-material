@@ -207,7 +207,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi SpellLocal'. s:fg_aqua. s:bg_none. s:undercurl. s:sp_aqua
   exec 'hi SpellRare'. s:fg_purple. s:bg_none. s:undercurl. s:sp_purple
 
-  exec 'hi Visual'. s:fg_black . s:bg_operator_base05
+  exec 'hi Visual'. s:fg_black . s:bg_operator_base05 .s:reverse
   exec 'hi VisualNOS'. s:fg_black . s:bg_operator_base05 . s:reverse
 
   exec 'hi QuickFixLine'. s:fg_purple. s:bold
