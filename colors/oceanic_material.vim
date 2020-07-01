@@ -24,15 +24,15 @@ endif
 
 let s:oceanic_material_transparent_background = get(g:,'oceanic_material_transparent_background',0)
 
-let s:oceanic_material_allow_bold = get(g:,'oceanic_material_enable_bold', 0)
+let s:oceanic_material_allow_bold = get(g:,'oceanic_material_allow_bold', 0)
 
-let s:oceanic_material_allow_italic = get(g:,'oceanic_material_enable_italic',0)
+let s:oceanic_material_allow_italic = get(g:,'oceanic_material_allow_italic',0)
 
-let s:oceanic_material_allow_underline = get(g:,'oceanic_material_enable_underline',0)
+let s:oceanic_material_allow_underline = get(g:,'oceanic_material_allow_underline',0)
 
-let s:oceanic_material_allow_reverse = get(g:,'oceanic_material_enable_reverse',0)
+let s:oceanic_material_allow_reverse = get(g:,'oceanic_material_allow_reverse',0)
 
-let s:oceanic_material_allow_undercurl = get(g:,'oceanic_material_enable_undercurl',0)
+let s:oceanic_material_allow_undercurl = get(g:,'oceanic_material_allow_undercurl',0)
 
 let s:bold = ''
 if s:oceanic_material_allow_bold == 1
