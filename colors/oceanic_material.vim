@@ -166,7 +166,7 @@ function! s:apply_syntax_highlightings()
   endif
   exec 'hi Folded' . s:fg_grey1 . s:bg_bg2
   exec 'hi EndOfBuffer' . s:fg_bg0 . s:bg_none
-  exec 'hi IncSearch'. s:fg_bg1 . s:bg_orange
+  exec 'hi IncSearch'. s:fg_bg1 . s:bg_orange .' cterm=NONE gui=NONE '
   exec 'hi Search'. s:fg_bg0 . s:bg_bg_green
   exec 'hi ColorColumn'. s:fg_none . s:bg_bg1
   exec 'hi Conceal'. s:fg_grey1 . s:bg_none
