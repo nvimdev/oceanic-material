@@ -97,7 +97,7 @@ colorscheme oceanic_material
 
 # Donate
 
-Do you like oceanic_material? [buy me a coffe](https://salt.bountysource.com/teams/thinkvim-taigacute)😘!
+Do you like oceanic_material? buy me a coffe 😘!
 
 [![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/bobbyhub)
 
