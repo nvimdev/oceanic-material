@@ -76,6 +76,7 @@ let s:colors = {
       \ 'fg1':              ['#ddc7a1',   '223'],
       \ 'fg3':              ['#4f5b66',   '17'],
       \ 'red':              ['#EC5f67',   '203'],
+      \ 'pink':             ['#d1699d',   '205'],
       \ 'orange':           ['#e78a4e',   '208'],
       \ 'yellow':           ['#d8a657',   '214'],
       \ 'green':            ['#a9b665',   '142'],
@@ -85,8 +86,6 @@ let s:colors = {
       \ 'darkgreen':        ['#5faf5f',    '71'],
       \ 'black':            ['#000000',    '0'],
       \ 'bg_red':           ['#ea6962',   '167'],
-      \ 'bg_green':         ['#a9b665',   '142'],
-      \ 'bg_yellow':        ['#d8a657',   '214'],
       \ 'grey0':            ['#7c6f64',   '243'],
       \ 'grey1':            ['#928374',   '245'],
       \ 'grey2':            ['#a89984',   '246'],
@@ -167,7 +166,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi Folded' . s:fg_grey1 . s:bg_bg2
   exec 'hi EndOfBuffer' . s:fg_bg0 . s:bg_none
   exec 'hi IncSearch'. s:fg_bg1 . s:bg_orange .' cterm=NONE gui=NONE '
-  exec 'hi Search'. s:fg_bg0 . s:bg_bg_green
+  exec 'hi Search'. s:fg_bg0 . s:bg_green
   exec 'hi ColorColumn'. s:fg_none . s:bg_bg1
   exec 'hi Conceal'. s:fg_grey1 . s:bg_none
   exec 'hi Cursor'. s:fg_none . s:bg_none . s:reverse
@@ -194,9 +193,9 @@ function! s:apply_syntax_highlightings()
   exec 'hi SpecialKey'. s:fg_bg5
   exec 'hi Pmenu'. s:fg_fg1. s:bg_bg3
   exec 'hi PmenuSbar'. s:fg_none. s:bg_bg3
-  exec 'hi PmenuSel'. s:fg_bg3. s:bg_bg_green
+  exec 'hi PmenuSel'. s:fg_bg3. s:bg_green
   exec 'hi PmenuThumb'. s:fg_none. s:bg_grey0
-  exec 'hi WildMenu'. s:fg_bg3. s:bg_bg_green
+  exec 'hi WildMenu'. s:fg_bg3. s:bg_green
   exec 'hi Question'. s:fg_yellow
   " Statusline
   exec 'hi StatusLine'. s:fg_bg0. s:bg_none
@@ -936,14 +935,16 @@ function! s:apply_syntax_highlightings()
   exec 'hi goFunctionCall' . s:fg_yellow  . s:bold
   exec 'hi goSpaceError'. s:fg_grey1. s:bg_red
   exec 'hi goVarArgs' . s:fg_blue
-  exec 'hi goBuiltins' . s:fg_green  . s:bold
+  exec 'hi goBuiltins' . s:fg_purple
   exec 'hi goPredefinedIdentifiers' . s:fg_orange
   exec 'hi goVar' . s:fg_orange
   exec 'hi goField' . s:fg_aqua
-  exec 'hi goDeclaration' . s:fg_purple
+  exec 'hi goDeclaration' . s:fg_blue
   exec 'hi goConst' . s:fg_orange
-  exec 'hi goFunction' . s:fg_blue
+  exec 'hi goFunction' . s:fg_pink
   exec 'hi goParamName' . s:fg_aqua
+  exec 'hi goConditional' .s:fg_purple
+  exec 'hi goBoolean' .s:fg_orange
   "===============================================================
   " Rust:
   " builtin: https://github.com/rust-lang/rust.vim
@@ -1317,32 +1318,10 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   " justinmk/vim-sneak
   "===============================================================
-  exec 'hi SneakLabelMask'. s:fg_bg_green. s:bg_bg_green
-  exec 'hi Sneak' . s:fg_bg0. s:bg_bg_green
-  exec 'hi SneakLabel' . s:fg_bg0. s:bg_bg_green
+  exec 'hi SneakLabelMask'. s:fg_green. s:bg_green
+  exec 'hi Sneak' . s:fg_bg0. s:bg_green
+  exec 'hi SneakLabel' . s:fg_bg0. s:bg_green
   exec 'hi SneakScope' . s:fg_bg0 . s:bg_fg0
-  "===============================================================
-  " luochen1990/rainbow {{{
-  if !exists('g:rbpt_colorpairs')
-    let g:rbpt_colorpairs = [['blue', s:colors.blue[0]], ['magenta', s:colors.purple[0]],
-          \ ['red', s:colors.red[0]], ['166', s:colors.orange[0]]]
-  endif
-
-  let g:rainbow_guifgs = [ s:colors.orange[0], s:colors.red[0], s:colors.purple[0], s:colors.blue[0] ]
-  let g:rainbow_ctermfgs = [ '166', 'red', 'magenta', 'blue' ]
-
-  if !exists('g:rainbow_conf')
-    let g:rainbow_conf = {}
-  endif
-  if !has_key(g:rainbow_conf, 'guifgs')
-    let g:rainbow_conf['guifgs'] = g:rainbow_guifgs
-  endif
-  if !has_key(g:rainbow_conf, 'ctermfgs')
-    let g:rainbow_conf['ctermfgs'] = g:rainbow_ctermfgs
-  endif
-
-  let g:niji_dark_colours = g:rbpt_colorpairs
-  let g:niji_light_colours = g:rbpt_colorpairs
   "===============================================================
   " itchyny/vim-cursorword {{{
   "===============================================================
