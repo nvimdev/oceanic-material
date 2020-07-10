@@ -616,14 +616,18 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   exec 'hi typescriptMethodAccessor' . s:fg_orange  . s:italic
   exec 'hi typescriptVariable' . s:fg_orange
-  exec 'hi typescriptVariableDeclaration' . s:fg_blue
+  exec 'hi typescriptVariableDeclaration' . s:fg_aqua
   exec 'hi typescriptTypeReference' . s:fg_yellow
   exec 'hi typescriptBraces' . s:fg_fg0
+  exec 'hi typescriptBoolean' .s:fg_orange
+  exec 'hi typescriptCase' .s:fg_purple
+  exec 'hi typescriptRepeat' .s:fg_purple
   exec 'hi typescriptEnumKeyword' . s:fg_red  . s:italic
   exec 'hi typescriptEnum' . s:fg_yellow
   exec 'hi typescriptIdentifierName' . s:fg_aqua
   exec 'hi typescriptProp' . s:fg_aqua
-  exec 'hi typescriptCall' . s:fg_blue
+  exec 'hi typescriptCall' . s:fg_aqua
+  exec 'hi typescriptConditional' . s:fg_purple
   exec 'hi typescriptInterfaceName' . s:fg_yellow
   exec 'hi typescriptEndColons' . s:fg_fg0
   exec 'hi typescriptMember' . s:fg_aqua
@@ -633,8 +637,8 @@ function! s:apply_syntax_highlightings()
   exec 'hi typescriptAbstract' . s:fg_orange
   exec 'hi typescriptObjectColon' . s:fg_grey1
   exec 'hi typescriptTypeAnnotation' . s:fg_grey1
-  exec 'hi typescriptAssign' . s:fg_orange
-  exec 'hi typescriptBinaryOp' . s:fg_orange
+  exec 'hi typescriptAssign' . s:fg_operator_base05
+  exec 'hi typescriptBinaryOp' . s:fg_operator_base05
   exec 'hi typescriptUnaryOp' . s:fg_orange
   exec 'hi typescriptFuncComma' . s:fg_fg0
   exec 'hi typescriptClassName' . s:fg_yellow
@@ -653,7 +657,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi typescriptAmbientDeclaration' . s:fg_red  . s:italic
   exec 'hi typescriptTemplateSubstitution' . s:fg_yellow
   exec 'hi typescriptTemplateSB' . s:fg_yellow
-  exec 'hi typescriptExceptions' . s:fg_red  . s:italic
+  exec 'hi typescriptExceptions' . s:fg_yellow
   exec 'hi typescriptCastKeyword' . s:fg_red  . s:italic
   exec 'hi typescriptOptionalMark' . s:fg_orange
   exec 'hi typescriptNull' . s:fg_aqua
@@ -697,6 +701,8 @@ function! s:apply_syntax_highlightings()
   exec 'hi typescriptCacheMethod' . s:fg_green  . s:bold
   exec 'hi typescriptES6MapMethod' . s:fg_green  . s:bold
   exec 'hi typescriptFunctionMethod' . s:fg_green  . s:bold
+  exec 'hi typescriptFuncName' . s:fg_pink
+  exec 'hi typescriptFuncKeyword' . s:fg_blue
   exec 'hi typescriptRegExpMethod' . s:fg_green  . s:bold
   exec 'hi typescriptXHRMethod' . s:fg_green  . s:bold
   exec 'hi typescriptBOMNavigatorMethod' . s:fg_green  . s:bold
