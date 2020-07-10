@@ -76,13 +76,13 @@ let s:colors = {
       \ 'fg1':              ['#ddc7a1',   '223'],
       \ 'fg3':              ['#4f5b66',   '17'],
       \ 'red':              ['#EC5f67',   '203'],
-      \ 'pink':             ['#d1699d',   '205'],
+      \ 'pink':             ['#d16d9e',   '205'],
       \ 'orange':           ['#e78a4e',   '208'],
       \ 'yellow':           ['#d8a657',   '214'],
       \ 'green':            ['#a9b665',   '142'],
       \ 'aqua':             ['#62b3b2',   '73'],
       \ 'blue':             ['#6699cc',   '68'],
-      \ 'purple':           ['#d3869b',   '175'],
+      \ 'purple':           ['#c594c5',   '176'],
       \ 'darkgreen':        ['#5faf5f',    '71'],
       \ 'black':            ['#000000',    '0'],
       \ 'bg_red':           ['#ea6962',   '167'],
@@ -945,6 +945,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi goParamName' . s:fg_aqua
   exec 'hi goConditional' .s:fg_purple
   exec 'hi goBoolean' .s:fg_orange
+  exec 'hi goRepeat' .s:fg_purple
   "===============================================================
   " Rust:
   " builtin: https://github.com/rust-lang/rust.vim
