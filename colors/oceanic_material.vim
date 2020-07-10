@@ -931,6 +931,7 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   exec 'hi goDirective' . s:fg_purple  . s:italic
   exec 'hi goConstants' . s:fg_aqua
+  exec 'hi goTypeDecl' . s:fg_purple  . s:italic
   exec 'hi goDeclType' . s:fg_orange  . s:italic
   exec 'hi goFunctionCall' . s:fg_yellow  . s:bold
   exec 'hi goSpaceError'. s:fg_grey1. s:bg_red
@@ -942,6 +943,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi goDeclaration' . s:fg_purple
   exec 'hi goConst' . s:fg_orange
   exec 'hi goFunction' . s:fg_blue
+  exec 'hi goParamName' . s:fg_aqua
   "===============================================================
   " Rust:
   " builtin: https://github.com/rust-lang/rust.vim
