@@ -16,7 +16,7 @@ endif
 set background=dark
 
 let g:colors_name = "oceanic_material"
-let s:oceanic_material_version = '0.1.0'
+let s:oceanic_material_version = '0.2.0'
 
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
   finish
