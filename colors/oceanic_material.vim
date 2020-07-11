@@ -191,10 +191,10 @@ function! s:apply_syntax_highlightings()
   exec 'hi NonText'. s:fg_bg5
   exec 'hi Whitespace'. s:fg_bg5
   exec 'hi SpecialKey'. s:fg_bg5
-  exec 'hi Pmenu'. s:fg_fg1. s:bg_bg3
-  exec 'hi PmenuSbar'. s:fg_none. s:bg_bg3
-  exec 'hi PmenuSel'. s:fg_bg3. s:bg_green
-  exec 'hi PmenuThumb'. s:fg_none. s:bg_grey0
+  exec 'hi Pmenu'. s:fg_fg1. s:bg_bg1
+  exec 'hi PmenuSbar'. s:fg_none. s:bg_fg3
+  exec 'hi PmenuSel'. s:fg_bg3. s:bg_blue
+  exec 'hi PmenuThumb'. s:fg_none. s:bg_operator_base05
   exec 'hi WildMenu'. s:fg_bg3. s:bg_green
   exec 'hi Question'. s:fg_yellow
   " Statusline
