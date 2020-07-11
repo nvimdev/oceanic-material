@@ -16,7 +16,7 @@ endif
 set background=dark
 
 let g:colors_name = "oceanic_material"
-let s:oceanic_material_version = '0.2.0'
+let s:oceanic_material_version = '0.2.1'
 
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
   finish
@@ -198,8 +198,8 @@ function! s:apply_syntax_highlightings()
   exec 'hi WildMenu'. s:fg_bg3. s:bg_green
   exec 'hi Question'. s:fg_yellow
   " Statusline
-  exec 'hi StatusLine'. s:fg_bg0. s:bg_none
-  exec 'hi StatusLineNC'. s:fg_bg0 . s:bg_none
+  exec 'hi StatusLine'. s:fg_bg0. s:bg_none .'gui=NONE'
+  exec 'hi StatusLineNC'. s:fg_bg0 . s:bg_none .'cterm=NONE gui=NONE'
   " spell
   exec 'hi SpellBad'. s:fg_red. s:bg_none. s:undercurl. s:sp_red
   exec 'hi SpellCap'. s:fg_blue. s:bg_none. s:undercurl. s:sp_blue
