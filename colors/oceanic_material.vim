@@ -182,7 +182,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi DiffChange'. s:fg_none. s:bg_bg_diff_blue
   exec 'hi DiffDelete'. s:fg_none. s:bg_bg_diff_red
   exec 'hi DiffText'. s:fg_bg0 . s:bg_fg0
-  exec 'hi Directory'. s:fg_green. s:bg_none
+  exec 'hi Directory'. s:fg_bg1. s:bg_none
   exec 'hi ErrorMsg'. s:fg_red. s:bg_none. s:bold . s:underline
   exec 'hi WarningMsg'. s:fg_yellow. s:bg_none. s:bold
   exec 'hi ModeMsg'. s:fg_fg0. s:bg_none. s:bold
