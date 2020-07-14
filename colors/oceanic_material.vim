@@ -198,8 +198,8 @@ function! s:apply_syntax_highlightings()
   exec 'hi WildMenu'. s:fg_bg3. s:bg_green
   exec 'hi Question'. s:fg_yellow
   " Statusline
-  exec 'hi StatusLine'. s:fg_bg0. s:bg_none .'gui=NONE'
-  exec 'hi StatusLineNC'. s:fg_bg0 . s:bg_none .'cterm=NONE gui=NONE'
+  exec 'hi StatusLine'. s:fg_fg1. s:bg_none .'gui=NONE'
+  exec 'hi StatusLineNC'. s:fg_grey1 . s:bg_none .'cterm=NONE gui=NONE'
   " spell
   exec 'hi SpellBad'. s:fg_red. s:bg_none. s:undercurl. s:sp_red
   exec 'hi SpellCap'. s:fg_blue. s:bg_none. s:undercurl. s:sp_blue
