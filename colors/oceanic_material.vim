@@ -76,7 +76,7 @@ let s:colors = {
       \ 'fg1':              ['#ddc7a1',   '223'],
       \ 'fg3':              ['#4f5b66',   '17'],
       \ 'red':              ['#EC5f67',   '203'],
-      \ 'pink':             ['#e653ab',   '205'],
+      \ 'magenta':             ['#e653ab',   '205'],
       \ 'orange':           ['#e78a4e',   '208'],
       \ 'yellow':           ['#d8a657',   '214'],
       \ 'green':            ['#a9b665',   '142'],
@@ -701,7 +701,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi typescriptCacheMethod' . s:fg_green  . s:bold
   exec 'hi typescriptES6MapMethod' . s:fg_green  . s:bold
   exec 'hi typescriptFunctionMethod' . s:fg_green  . s:bold
-  exec 'hi typescriptFuncName' . s:fg_pink
+  exec 'hi typescriptFuncName' . s:fg_magenta
   exec 'hi typescriptFuncKeyword' . s:fg_blue
   exec 'hi typescriptRegExpMethod' . s:fg_green  . s:bold
   exec 'hi typescriptXHRMethod' . s:fg_green  . s:bold
@@ -947,7 +947,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi goField' . s:fg_aqua
   exec 'hi goDeclaration' . s:fg_blue
   exec 'hi goConst' . s:fg_orange
-  exec 'hi goFunction' . s:fg_pink . 'gui=bold'
+  exec 'hi goFunction' . s:fg_magenta . 'gui=bold'
   exec 'hi goParamName' . s:fg_aqua
   exec 'hi goConditional' .s:fg_purple
   exec 'hi goBoolean' .s:fg_orange
