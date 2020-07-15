@@ -76,7 +76,7 @@ let s:colors = {
       \ 'fg1':              ['#ddc7a1',   '223'],
       \ 'fg3':              ['#4f5b66',   '17'],
       \ 'red':              ['#EC5f67',   '203'],
-      \ 'pink':             ['#d16d9e',   '205'],
+      \ 'pink':             ['#e653ab',   '205'],
       \ 'orange':           ['#e78a4e',   '208'],
       \ 'yellow':           ['#d8a657',   '214'],
       \ 'green':            ['#a9b665',   '142'],
@@ -947,7 +947,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi goField' . s:fg_aqua
   exec 'hi goDeclaration' . s:fg_blue
   exec 'hi goConst' . s:fg_orange
-  exec 'hi goFunction' . s:fg_pink
+  exec 'hi goFunction' . s:fg_pink . 'gui=bold'
   exec 'hi goParamName' . s:fg_aqua
   exec 'hi goConditional' .s:fg_purple
   exec 'hi goBoolean' .s:fg_orange
