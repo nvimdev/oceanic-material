@@ -76,7 +76,7 @@ let s:colors = {
       \ 'fg1':              ['#ddc7a1',   '223'],
       \ 'fg3':              ['#4f5b66',   '17'],
       \ 'red':              ['#EC5f67',   '203'],
-      \ 'magenta':             ['#e653ab',   '205'],
+      \ 'magenta':          ['#d16d9e',   '205'],
       \ 'orange':           ['#e78a4e',   '208'],
       \ 'yellow':           ['#d8a657',   '214'],
       \ 'green':            ['#a9b665',   '142'],
@@ -216,15 +216,15 @@ function! s:apply_syntax_highlightings()
   exec 'hi ToolbarButton'. s:fg_bg0. s:bg_grey2
 
   " Syntax
-  exec 'hi Boolean'. s:fg_purple
+  exec 'hi Boolean'. s:fg_orange
   exec 'hi Number'. s:fg_purple
   exec 'hi Float'. s:fg_purple
   exec 'hi PreProc'. s:fg_purple. s:italic
   exec 'hi PreCondit'. s:fg_purple. s:italic
   exec 'hi Include'. s:fg_purple. s:italic
   exec 'hi Define'. s:fg_purple. s:italic
-  exec 'hi Conditional'. s:fg_red. s:italic
-  exec 'hi Repeat'. s:fg_red. s:italic
+  exec 'hi Conditional'. s:fg_purple  . s:italic
+  exec 'hi Repeat'. s:fg_purple
   exec 'hi Keyword'. s:fg_red. s:italic
   exec 'hi Typedef'. s:fg_red. s:italic
   exec 'hi Exception'. s:fg_red. s:italic
@@ -239,7 +239,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi Special'. s:fg_yellow
   exec 'hi SpecialChar'. s:fg_yellow
   exec 'hi Type'. s:fg_yellow
-  exec 'hi Function'. s:fg_green. s:bold
+  exec 'hi Function'. s:fg_magenta. 'gui=bold'
   exec 'hi String'. s:fg_green
   exec 'hi Character'. s:fg_green
   exec 'hi Constant'. s:fg_aqua
@@ -598,6 +598,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi jsxEscapeJs' . s:fg_blue
   exec 'hi jsxAttrib' . s:fg_yellow
   exec 'hi jsxCloseTag' . s:fg_aqua . s:bold
+  exec 'hi jsxComponentName' . s:fg_blue . 'gui=bold'
   "===============================================================
   " TypeScript:
   " vim-typescript: https://github.com/leafgarland/typescript-vim {{{
@@ -947,11 +948,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi goField' . s:fg_aqua
   exec 'hi goDeclaration' . s:fg_blue
   exec 'hi goConst' . s:fg_orange
-  exec 'hi goFunction' . s:fg_magenta . 'gui=bold'
   exec 'hi goParamName' . s:fg_aqua
-  exec 'hi goConditional' .s:fg_purple
-  exec 'hi goBoolean' .s:fg_orange
-  exec 'hi goRepeat' .s:fg_purple
   "===============================================================
   " Rust:
   " builtin: https://github.com/rust-lang/rust.vim
