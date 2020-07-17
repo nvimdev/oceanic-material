@@ -16,7 +16,7 @@ endif
 set background=dark
 
 let g:colors_name = "oceanic_material"
-let s:oceanic_material_version = '0.2.1'
+let s:oceanic_material_version = '0.2.2'
 
 if !(has('termguicolors') && &termguicolors) && !has('gui_running') && &t_Co != 256
   finish
@@ -802,23 +802,6 @@ function! s:apply_syntax_highlightings()
   exec 'hi cppSTLios' . s:fg_aqua
   exec 'hi cppSTLiterator' . s:fg_purple  . s:italic
   exec 'hi cppSTLexception' . s:fg_purple
-  "===============================================================
-  " vim-cpp-modern: https://github.com/bfrg/vim-cpp-modern {{{
-  "===============================================================
-  exec 'hi cppSTLVariable' . s:fg_aqua
-  "===============================================================
-  " chromatica: https://github.com/arakashic/chromatica.nvim {{{
-  "===============================================================
-  exec 'hi Member' . s:fg_aqua
-  exec 'hi Variable' . s:fg_blue
-  exec 'hi Namespace' . s:fg_purple
-  exec 'hi EnumConstant' . s:fg_aqua
-  exec 'hi chromaticaException' . s:fg_red  . s:italic
-  exec 'hi chromaticaCast' . s:fg_orange
-  exec 'hi OperatorOverload' . s:fg_orange
-  exec 'hi AccessQual' . s:fg_orange
-  exec 'hi Linkage' . s:fg_orange
-  exec 'hi AutoType' . s:fg_yellow
   "===============================================================
   " vim-lsp-cxx-highlight https://github.com/jackguo380/vim-lsp-cxx-highlight {{{
   "===============================================================
