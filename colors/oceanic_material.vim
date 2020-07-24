@@ -1350,6 +1350,7 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   exec 'hi DashboardShortCut' . s:fg_red . s:bold
   exec 'hi DashboardFooter' . s:fg_purple .s:bold
+  exec 'hi DashboardHeader' . s:fg_blue .s:bold
 
 endfunction
 
