@@ -62,7 +62,6 @@ if s:oceanic_material_allow_undercurl == 1
 endif
 
 
-
 let s:colors = {
       \ 'bg1':              ['#343d46',   '237'],
       \ 'bg2':              ['#282828',   '235'],
@@ -1353,7 +1352,14 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   "Shougo/defx.nvim
   "===============================================================
-  exec 'hi DefxIconsDirectory' . s:fg_blue
+  hi Defx_git_Untracked guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+  hi Defx_git_Ignored guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+  hi Defx_git_Unknown guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+  hi Defx_git_Renamed ctermfg=214 guifg=#fabd2f
+  hi Defx_git_Modified ctermfg=214 guifg=#fabd2f
+  hi Defx_git_Unmerged ctermfg=167 guifg=#fb4934
+  hi Defx_git_Deleted ctermfg=167 guifg=#fb4934
+  hi Defx_git_Staged ctermfg=142 guifg=#b8bb26
   "===============================================================
   "hardcoreplayers/dashboard-nvim
   "===============================================================
