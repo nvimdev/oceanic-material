@@ -190,7 +190,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi DiffChange'. s:fg_none. s:bg_bg_diff_blue
   exec 'hi DiffDelete'. s:fg_none. s:bg_bg_diff_red
   exec 'hi DiffText'. s:fg_bg0 . s:bg_fg0
-  exec 'hi Directory'. s:fg_bg1. s:bg_none
+  exec 'hi Directory'. s:fg_bg5. s:bg_none
   exec 'hi ErrorMsg'. s:fg_red. s:bg_none. s:bold . s:underline
   exec 'hi WarningMsg'. s:fg_yellow. s:bg_none. s:bold
   exec 'hi ModeMsg'. s:fg_fg0. s:bg_none. s:bold
@@ -205,6 +205,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi PmenuThumb'. s:fg_none. s:bg_operator_base05
   exec 'hi WildMenu'. s:fg_bg3. s:bg_green
   exec 'hi Question'. s:fg_yellow
+  exec 'hi NormalFloat' .s:fg_fg1 . s:bg_bg3
   " Statusline
   exec 'hi StatusLine'. s:fg_fg1. s:bg_none .'gui=NONE'
   exec 'hi StatusLineNC'. s:fg_grey1 . s:bg_none .'cterm=NONE gui=NONE'
@@ -1219,7 +1220,22 @@ function! s:apply_syntax_highlightings()
   exec 'hi CocGitRemovedSign' . s:fg_red
   exec 'hi CocGitTopRemovedSign' . s:fg_red
   "coc-explorer
-  exec 'hi CocExplorerFileDirectory' .s:fg_green
+  exec 'hi CocExplorerBufferRoot' . s:fg_orange
+  exec 'hi CocExplorerBufferExpandIcon'. fg_aqua
+  exec 'hi CocExplorerBufferBufnr' . s:fg_purple
+  exec 'hi CocExplorerBufferModified'. s:fg_red
+  exec 'hi CocExplorerBufferBufname'. s:fg_grey
+  exec 'hi CocExplorerBufferFullpath'. s:fg_grey
+  exec 'hi CocExplorerFileRoot' . s:fg_orange
+  exec 'hi CocExplorerFileExpandIcon' . s:fg_aqua
+  exec 'hi CocExplorerFileFullpath' . s:fg_grey
+  exec 'hi CocExplorerFileDirectory' .  s:fg_green
+  exec 'hi CocExplorerFileGitStage' . s:fg_purple
+  exec 'hi CocExplorerFileGitUnstage' . s:fg_yellow
+  exec 'hi CocExplorerFileSize' . s:fg_blue
+  exec 'hi CocExplorerTimeAccessed' . s:fg_aqua
+  exec 'hi CocExplorerTimeCreated' . s:fg_aqua
+  exec 'hi CocExplorerTimeModified' . s:fg_aqua
   "===============================================================
   " dense-analysis/ale
   "===============================================================
