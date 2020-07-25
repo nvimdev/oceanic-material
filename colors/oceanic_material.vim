@@ -1218,6 +1218,8 @@ function! s:apply_syntax_highlightings()
   exec 'hi CocGitChangedSign' . s:fg_blue
   exec 'hi CocGitRemovedSign' . s:fg_red
   exec 'hi CocGitTopRemovedSign' . s:fg_red
+  "coc-explorer
+  exec 'hi CocExplorerFileDirectory' .s:fg_green
   "===============================================================
   " dense-analysis/ale
   "===============================================================
@@ -1352,14 +1354,9 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   "Shougo/defx.nvim
   "===============================================================
-  hi Defx_git_Untracked guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-  hi Defx_git_Ignored guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-  hi Defx_git_Unknown guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-  hi Defx_git_Renamed ctermfg=214 guifg=#fabd2f
-  hi Defx_git_Modified ctermfg=214 guifg=#fabd2f
-  hi Defx_git_Unmerged ctermfg=167 guifg=#fb4934
-  hi Defx_git_Deleted ctermfg=167 guifg=#fb4934
-  hi Defx_git_Staged ctermfg=142 guifg=#b8bb26
+  exec 'hi DefxIconsParentDirectory' . s:fg_orange
+  exec 'hi Defx_filename_directory' . s:fg_blue
+  exec 'hi Defx_filename_root' . s:fg_red
   "===============================================================
   "hardcoreplayers/dashboard-nvim
   "===============================================================
