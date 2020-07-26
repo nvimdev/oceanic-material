@@ -1221,14 +1221,14 @@ function! s:apply_syntax_highlightings()
   exec 'hi CocGitTopRemovedSign' . s:fg_red
   "coc-explorer
   exec 'hi CocExplorerBufferRoot' . s:fg_orange
-  exec 'hi CocExplorerBufferExpandIcon'. fg_aqua
+  exec 'hi CocExplorerBufferExpandIcon'. s:fg_aqua
   exec 'hi CocExplorerBufferBufnr' . s:fg_purple
   exec 'hi CocExplorerBufferModified'. s:fg_red
-  exec 'hi CocExplorerBufferBufname'. s:fg_grey
-  exec 'hi CocExplorerBufferFullpath'. s:fg_grey
+  exec 'hi CocExplorerBufferBufname'. s:fg_grey0
+  exec 'hi CocExplorerBufferFullpath'. s:fg_grey0
   exec 'hi CocExplorerFileRoot' . s:fg_orange
   exec 'hi CocExplorerFileExpandIcon' . s:fg_aqua
-  exec 'hi CocExplorerFileFullpath' . s:fg_grey
+  exec 'hi CocExplorerFileFullpath' . s:fg_grey0
   exec 'hi CocExplorerFileDirectory' .  s:fg_green
   exec 'hi CocExplorerFileGitStage' . s:fg_purple
   exec 'hi CocExplorerFileGitUnstage' . s:fg_yellow
