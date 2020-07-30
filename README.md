@@ -21,6 +21,14 @@ set background=dark
 colorscheme oceanic_material
 ```
 
+## Color
+
+| #282c34                                                         | #1b2b34                                                         | #EC5f67                                                         | #d16d92                                                         | #e78a4e                                                         | #d8a657                                                         | #a9b665                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| ![#282c34](https://via.placeholder.com/80/282c34/000000?text=+) | ![#1b2b34](https://via.placeholder.com/80/1b2b34/000000?text=+) | ![#EC5f67](https://via.placeholder.com/80/EC5f67/000000?text=+) | ![#d16d92](https://via.placeholder.com/80/d16d92/000000?text=+) | ![#e78a4e](https://via.placeholder.com/80/e78a4e/000000?text=+) | ![#d8a657](https://via.placeholder.com/80/d8a657/000000?text=+) | ![#a9b665](https://via.placeholder.com/80/a9b665/000000?text=+) |
+| #62b3b2                                                         | #6699cc                                                         | #c594c5                                                         | #5faf5f                                                         | #c0c5ce                                                         | #7c6f64                                                         | #d4be98                                                         |
+| ![#62b3b2](https://via.placeholder.com/80/62b3b2/000000?text=+) | ![#6699cc](https://via.placeholder.com/80/6699cc/000000?text=+) | ![#c594c5](https://via.placeholder.com/80/c594c5/000000?text=+) | ![#5faf5f](https://via.placeholder.com/80/5faf5f/000000?text=+) | ![#c0c5ce](https://via.placeholder.com/80/c0c5ce/000000?text=+) | ![#7c6f64](https://via.placeholder.com/80/7c6f64/000000?text=+) | ![#d4be98](https://via.placeholder.com/80/d4be98/000000?text=+) |
+
 ## Options
 
 | option                                      | value                                | default                          |
