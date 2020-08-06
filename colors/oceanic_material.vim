@@ -24,7 +24,7 @@ endif
 
 let s:oceanic_material_transparent_background = get(g:,'oceanic_material_transparent_background',0)
 
-let s:oceanic_material_dark_background = get(g:,'oceanic_material_dark_background',0)
+let s:oceanic_material_background = get(g:,'oceanic_material_background','ocean')
 
 let s:oceanic_material_allow_bold = get(g:,'oceanic_material_allow_bold', 0)
 
@@ -95,10 +95,12 @@ let s:colors = {
       \ 'none':             ['NONE',      'NONE']
   \ }
 
-if s:oceanic_material_dark_background == 1
+if s:oceanic_material_background == 'medium'
   let s:colors['bg0']  = ['#282C34', '235']
-else
+elseif s:oceanic_material_background =='ocean'
   let s:colors['bg0']  = ['#1b2b34', '235']
+elseif s:oceanic_material_background == 'darker'
+  let s:colors['bg0']  = ['#212121', 'NONE']
 endif
 
 function! g:OceanicMaterialPalette()

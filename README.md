@@ -31,15 +31,15 @@ colorscheme oceanic_material
 
 ## Options
 
-| option                                      | value                                | default                          |
-| ------------------------------------------- | ------------------------------------ | -------------------------------- |
-| `g:oceanic_material_transparent_background` | 1: enable transparent background     | 0:disable transparent background |
-| `g:oceanic_material_dark_background`        | 1: use `#282c34` color as background | 0: use default `#1b2b34`         |
-| `g:oceanic_material_allow_bold`             | 1: use bold for certain text         | 0: not at all                    |
-| `g:oceanic_material_allow_italic`           | 1: use italic for certain text       | 0: not at all                    |
-| `g:oceanic_material_allow_underline`        | 1: use underline for certain text    | 0: not at all                    |
-| `g:oceanic_material_allow_undercurl`        | 1: use undercurl for certain text    | 0: not at all                    |
-| `g:oceanic_material_allow_reverse`          | 1: use reverse for certain text      | 0: not at all                    |
+| option                                      | value                                     | default                                             |
+| ------------------------------------------- | ----------------------------------------- | --------------------------------------------------- |
+| `g:oceanic_material_transparent_background` | 1: enable transparent background          | 0:disable transparent background                    |
+| `g:oceanic_material_dark_background`        | 'ocean' use `#282c34` color as background | ocean: `#1b2b34` medium: `#282C34` darker:`#212121` |
+| `g:oceanic_material_allow_bold`             | 1: use bold for certain text              | 0: not at all                                       |
+| `g:oceanic_material_allow_italic`           | 1: use italic for certain text            | 0: not at all                                       |
+| `g:oceanic_material_allow_underline`        | 1: use underline for certain text         | 0: not at all                                       |
+| `g:oceanic_material_allow_undercurl`        | 1: use undercurl for certain text         | 0: not at all                                       |
+| `g:oceanic_material_allow_reverse`          | 1: use reverse for certain text           | 0: not at all                                       |
 
 ## Support Filetype
 
