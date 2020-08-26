@@ -1111,25 +1111,11 @@ function! s:apply_syntax_highlightings()
   "===============================================================
   exec 'hi vimCommentTitle'. s:fg_grey1. s:bold
   exec 'hi vimLet' . s:fg_orange
-  exec 'hi vimFunction' . s:fg_green  . s:bold
+  exec 'hi vimVar' . s:fg_aqua
+  exec 'hi vimFunction' . s:fg_magenta  . s:bold
   exec 'hi vimIsCommand' . s:fg_fg0
-  exec 'hi vimUserFunc' . s:fg_green  . s:bold
-  exec 'hi vimFuncName' . s:fg_green  . s:bold
-  exec 'hi vimMap' . s:fg_purple  . s:italic
-  exec 'hi vimNotation' . s:fg_aqua
-  exec 'hi vimMapLhs' . s:fg_green
-  exec 'hi vimMapRhs' . s:fg_green
-  exec 'hi vimSetEqual' . s:fg_yellow
-  exec 'hi vimSetSep' . s:fg_fg0
-  exec 'hi vimOption' . s:fg_aqua
-  exec 'hi vimUserAttrbKey' . s:fg_yellow
-  exec 'hi vimUserAttrb' . s:fg_green
-  exec 'hi vimAutoCmdSfxList' . s:fg_aqua
-  exec 'hi vimSynType' . s:fg_orange
-  exec 'hi vimHiBang' . s:fg_orange
-  exec 'hi vimSet' . s:fg_yellow
-  exec 'hi vimSetSep' . s:fg_grey1
-  exec 'hi vimContinue' . s:fg_grey1
+  exec 'hi vimUserFunc' . s:fg_yellow  . s:bold
+  exec 'hi vimFuncName' . s:fg_yellow  . s:bold
   "===============================================================
   " Makefile:
   "===============================================================
