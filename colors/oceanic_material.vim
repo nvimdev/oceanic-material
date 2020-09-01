@@ -1186,7 +1186,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi CocHintSign' . s:fg_aqua
   exec 'hi CocErrorHighlight' . s:fg_none  . s:undercurl . s:sp_red . s:underline
   exec 'hi CocWarningHighlight' . s:fg_none  . s:undercurl . s:sp_yellow.s:underline
-  exec 'hi CocInfoHighlight' . s:fg_none  . s:undercurl . s:sp_blue
+  exec 'hi CocInfoHighlight' . s:fg_none  . s:undercurl . s:sp_blue . s:underline
   exec 'hi CocWarningVirtualText' . s:fg_grey1
   exec 'hi CocErrorVirtualText' . s:fg_grey1
   exec 'hi CocInfoVirtualText' . s:fg_grey1
