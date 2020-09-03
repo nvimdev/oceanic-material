@@ -61,8 +61,15 @@ if s:oceanic_material_allow_undercurl == 1
   let s:undercurl = ' cterm=undercurl gui=undercurl '
 endif
 
+let s:background = {
+      \'medium': ['#282C34', '235'],
+      \'ocean' : ['#1b2b34', '235'],
+      \'darker': ['#212121', 'NONE'],
+      \'deep'  : ['#1d1f21', '234'],
+      \}
 
 let s:colors = {
+      \ 'bg0':              s:background[s:oceanic_material_background],
       \ 'bg1':              ['#343d46',   '237'],
       \ 'bg2':              ['#282828',   '235'],
       \ 'bg3':              ['#3c3836',   '237'],
@@ -94,14 +101,6 @@ let s:colors = {
       \ 'operator_base05':  ['#c0c5ce',   '251'],
       \ 'none':             ['NONE',      'NONE']
   \ }
-
-if s:oceanic_material_background == 'medium'
-  let s:colors['bg0']  = ['#282C34', '235']
-elseif s:oceanic_material_background =='ocean'
-  let s:colors['bg0']  = ['#1b2b34', '235']
-elseif s:oceanic_material_background == 'darker'
-  let s:colors['bg0']  = ['#212121', 'NONE']
-endif
 
 function! g:OceanicMaterialPalette()
   return copy(s:colors)
