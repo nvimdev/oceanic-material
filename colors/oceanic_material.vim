@@ -1340,6 +1340,10 @@ function! s:apply_syntax_highlightings()
   exec 'hi DashboardFooter' . s:fg_purple .s:bold
   exec 'hi DashboardHeader' . s:fg_blue .s:bold
   "===============================================================
+  " voldkiss/vim-floaterm
+  "===============================================================
+  exec 'hi Floaterm' .s:fg_none . s:bg_bg0
+  exec 'hi FloatermBorder' .s:fg_blue . s:bg_none
 
 endfunction
 
