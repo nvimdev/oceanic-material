@@ -303,13 +303,6 @@ function! s:apply_syntax_highlightings()
   exec 'hi mkdDelimiter'.s:fg_grey1
   exec 'hi mkdId'.s:fg_yellow
   "===============================================================
-  " https://github.com/marshallward/vim-restructuredtext
-  "===============================================================
-  exec 'hi rstStandaloneHyperlink'. s:fg_purple.s:underline
-  exec 'hi rstSubstitutionReference'.s:fg_blue
-  exec 'hi rstInterpretedTextOrHyperlinkReference'.s:fg_aqua
-  exec 'hi rstTableLines'.s:fg_grey1
-  "===============================================================
   " Latex: http://www.drchip.org/astronaut/vim/index.html#SYNTAX_TEX
   "===============================================================
   exec 'hi texStatement'.s:fg_green
@@ -321,30 +314,6 @@ function! s:apply_syntax_highlightings()
   exec 'hi texBeginEndName'.s:fg_blue
   exec 'hi texDocType'.s:fg_purple
   exec 'hi texDocTypeArgs'.s:fg_orange
-  "===============================================================
-  " Html: https://notabug.org/jorgesumle/vim-html-syntax {{{
-  "===============================================================
-  exec 'hi htmlH1'. s:fg_red. s:bold
-  exec 'hi htmlH2'. s:fg_orange. s:bold
-  exec 'hi htmlH3'. s:fg_yellow. s:bold
-  exec 'hi htmlH4'. s:fg_green. s:bold
-  exec 'hi htmlH5'. s:fg_blue. s:bold
-  exec 'hi htmlH6'. s:fg_purple.s:bold
-  exec 'hi htmlLink'. s:fg_none. s:underline
-  exec 'hi htmlBold'. s:fg_none. s:bold
-  exec 'hi htmlBoldUnderline'. s:fg_none. s:bold . s:underline
-  exec 'hi htmlBoldItalic'. s:fg_none. s:bold . s:italic
-  exec 'hi htmlBoldUnderlineItalic'. s:fg_none. s:bold . s:underline . s:italic
-  exec 'hi htmlUnderline'. s:fg_none. s:fg_none. s:underline
-  exec 'hi htmlUnderlineItalic'. s:fg_none. s:underline . s:italic
-  exec 'hi htmlItalic'. s:fg_none. s:italic
-  exec 'hi htmlTag'. s:fg_green
-  exec 'hi htmlEndTag'. s:fg_blue
-  exec 'hi htmlTagN'. s:fg_orange. s:italic
-  exec 'hi htmlTagName'. s:fg_orange. s:italic
-  exec 'hi htmlArg'. s:fg_aqua
-  exec 'hi htmlScriptTag'. s:fg_purple
-  exec 'hi htmlSpecialTagName'. s:fg_red.s:italic
   "===============================================================
   " Xml:" builtin: https://github.com/chrisbra/vim-xml-ftplugin
   "===============================================================
@@ -403,28 +372,6 @@ function! s:apply_syntax_highlightings()
   exec 'hi sassControl'.s:fg_red  .s:italic
   exec 'hi sassFor'.s:fg_red  .s:italic
   exec 'hi sassFunctionName'.s:fg_green . s:bold
-  "===============================================================
-  " scss-syntax: https://github.com/cakebaker/scss-syntax.vim
-  "===============================================================
-  exec 'hi scssMixinName'.s:fg_yellow
-  exec 'hi scssSelectorChar'.s:fg_red
-  exec 'hi scssSelectorName'.s:fg_red  .s:italic
-  exec 'hi scssInterpolationDelimiter'.s:fg_green
-  exec 'hi scssVariableValue'.s:fg_green
-  exec 'hi scssNull'.s:fg_purple
-  exec 'hi scssBoolean'.s:fg_purple
-  exec 'hi scssVariableAssignment'.s:fg_grey1
-  exec 'hi scssForKeyword'.s:fg_purple  .s:italic
-  exec 'hi scssAttribute'.s:fg_orange
-  exec 'hi scssFunctionName'.s:fg_yellow
-  "===============================================================
-  " LESS: vim-less: https://github.com/groenewege/vim-less
-  "===============================================================
-  exec ' hi lessMixinChar'.s:fg_grey1
-  exec ' hi lessClass'.s:fg_red  .s:italic
-  exec ' hi lessVariable'.s:fg_blue
-  exec ' hi lessAmpersandChar'.s:fg_orange
-  exec ' hi lessFunction'.s:fg_yellow
   "===============================================================
   " Javascript:
   " https://github.com/pangloss/vim-javascript
