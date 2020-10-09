@@ -8,11 +8,11 @@ Oceanice_Material is a dark colorscheme for vim/neovim
 
 - vim-plug
   ```viml
-  Plug 'hardcoreplayers/oceanic-material'
+  Plug 'glepnir/oceanic-material'
   ```
 - dein
   ```viml
-  call dein#add('hardcoreplayers/oceanic-material')
+  call dein#add('glepnir/oceanic-material')
   ```
   Then add this on your vimrc
 
@@ -102,7 +102,7 @@ colorscheme oceanic_material
 - machakann/vim-sandwich
 - kristijanhusak/vim-dadbod-ui
 - Shougo/defx.nvim
-- hardcoreplayers/dashboard-nvim
+- glepnir/dashboard-nvim
 
 # Donate
 
