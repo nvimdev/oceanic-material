@@ -121,3 +121,5 @@ Do you like oceanic_material? buy me a coffe 😘!
 - [NLKNguyen/papercolor-theme](https://github.com/NLKNguyen/papercolor-theme)
 
 - [mhartington/oceanic-next](https://github.com/mhartington/oceanic-next)
+
+- [sainnhe/gruvbox-material](https://github.com/sainnhe/gruvbox-material)
