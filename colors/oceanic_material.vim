@@ -24,7 +24,7 @@ endif
 
 let s:oceanic_material_transparent_background = get(g:,'oceanic_material_transparent_background',0)
 
-let s:oceanic_material_background = get(g:,'oceanic_material_background','medium')
+let s:oceanic_material_background = get(g:,'oceanic_material_background','ocean')
 
 let s:oceanic_material_allow_bold = get(g:,'oceanic_material_allow_bold', 0)
 
