@@ -244,7 +244,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi Special'. s:fg_yellow
   exec 'hi SpecialChar'. s:fg_yellow
   exec 'hi Type'. s:fg_yellow
-  exec 'hi Function'. s:fg_magenta. 'gui=bold'
+  exec 'hi Function'. s:fg_magenta. s:bold
   exec 'hi String'. s:fg_green
   exec 'hi Character'. s:fg_green
   exec 'hi Constant'. s:fg_aqua
