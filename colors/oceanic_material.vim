@@ -177,7 +177,7 @@ function! s:apply_syntax_highlightings()
   exec 'hi lCursor'. s:fg_none . s:bg_none . s:reverse
   exec 'hi CursorIM'. s:fg_none . s:bg_none . s:reverse
   exec 'hi CursorColumn'. s:fg_none. s:fg_bg1
-  exec 'hi CursorLine'. s:fg_none . s:bg_bg1
+  exec 'hi CursorLine'. s:fg_none . s:bg_bg2
   exec 'hi LineNr'. s:fg_grey0
   exec 'hi CursorLineNr'. s:fg_fg1
   exec 'hi DiffAdd'. s:fg_black . s:bg_green
