@@ -1115,6 +1115,13 @@ function! s:apply_syntax_highlightings()
   exec 'hi NERDTreeLinkFile' . s:fg_grey1
   exec 'hi NERDTreeLinkTarget' . s:fg_green
   "===============================================================
+  " nvim-tree/nvim-tree.lua
+  "===============================================================
+  exec 'hi NvimTreeFolderName' . s:fg_aqua
+  exec 'hi NvimTreeSpecialFolderName' . s:fg_aqua
+  exec 'hi NvimTreeOpenedFolderName' . s:fg_orange
+  exec 'hi NvimTreeEmptyFolderName' . s:fg_orange
+  "===============================================================
   " easymotion/vim-easymotion
   "===============================================================
   exec 'hi EasyMotionTarget'. s:fg_bg0 . s:bg_green
